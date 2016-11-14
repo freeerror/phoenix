@@ -35726,7 +35726,7 @@ N    */
 Nextern _ARMABI int fgetc(FILE * /*stream*/) __attribute__((__nonnull__(1)));
 Xextern __declspec(__nothrow) int fgetc(FILE *  ) __attribute__((__nonnull__(1)));
 N   /*
-N    * obtains the next character (if present) as an uint8_t converted to
+N    * obtains the next character (if present) as an unsigned char converted to
 N    * an int, from the input stream pointed to by stream, and advances the
 N    * associated file position indicator (if defined).
 N    * Returns: the next character from the input stream pointed to by stream.
@@ -35752,7 +35752,7 @@ N    */
 Nextern _ARMABI int fputc(int /*c*/, FILE * /*stream*/) __attribute__((__nonnull__(2)));
 Xextern __declspec(__nothrow) int fputc(int  , FILE *  ) __attribute__((__nonnull__(2)));
 N   /*
-N    * writes the character specified by c (converted to an uint8_t) to
+N    * writes the character specified by c (converted to an unsigned char) to
 N    * the output stream pointed to by stream, at the position indicated by the
 N    * asociated file position indicator (if defined), and advances the
 N    * indicator appropriately. If the file position indicator is not defined,
@@ -35839,7 +35839,7 @@ N    */
 Nextern _ARMABI int ungetc(int /*c*/, FILE * /*stream*/) __attribute__((__nonnull__(2)));
 Xextern __declspec(__nothrow) int ungetc(int  , FILE *  ) __attribute__((__nonnull__(2)));
 N   /*
-N    * pushes the character specified by c (converted to an uint8_t) back
+N    * pushes the character specified by c (converted to an unsigned char) back
 N    * onto the input stream pointed to by stream. The character will be
 N    * returned by the next read on that stream. An intervening call to the
 N    * fflush function or to a file positioning function (fseek, fsetpos,
