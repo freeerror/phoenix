@@ -1,0 +1,13 @@
+Activity:
+
+1. 要获取Acceleration,只需直接调用getAcceleration()函数；
+
+2. adxl345_low_level_init()是初始化对应的中断引脚，如果需要使用observe指令，必须先调用之；
+
+3. 若要使用observeAcceleration中的Activity指令，只需先调用adxl345_low_level_init()和observeActivity()指令，设置阈值和对应的轴，然后调用adxl345_actint_process()指令，同时可以输出
+
+三轴加速度的值；
+
+2016.9.7 已经完成了加速度传感器的驱动，具体操作细节见WSN ISSUES - XYIS-10
+
+2016.9.12 WS2812灯的驱动改进，将PWM_PERIOD的值由0x0C改为0x0F，这样可以优化当显示组合颜色（黄、紫、白）时有一些闪烁的现象。
