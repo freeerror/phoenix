@@ -65,13 +65,14 @@ int main(void)
 {
 	/* 
 	  在启动调度前，为了防止初始化STM32外设时有中断服务程序执行，这里禁止全局中断(除了NMI和HardFault)。
-	  这样做的好处是：
+	  这样做的好处是： 
 	  1. 防止执行的中断服务程序中有FreeRTOS的API函数。
 	  2. 保证系统正常启动，不受别的中断影响。
 	  3. 关于是否关闭全局中断，大家根据自己的实际情况设置即可。
 	  在移植文件port.c中的函数prvStartFirstTask中会重新开启全局中断。通过指令cpsie i开启，__set_PRIMASK(1)
 	  和cpsie i是等效的。
      */
+	
 	__set_PRIMASK(1);  
 	
 	/* 硬件初始化 */
@@ -102,10 +103,16 @@ int main(void)
 */
 static void vTaskTaskUserIF(void *pvParameters)
 {
+	uint8_t _ucByte;
+	
     while(1)
     {
-		printf("Task Task User IF 1\r\n");
-		vTaskDelay(100);
+		//printf("Task Task User IF 1\r\n");
+			if(comGetChar(COM1,&_ucByte))
+			{
+				comSendChar(COM1,_ucByte);
+			}
+		//vTaskDelay(100);
 	}
 }
 
@@ -122,7 +129,7 @@ static void vTaskLED(void *pvParameters)
 {
     while(1)
     {
-		printf("Task LED 2\r\n");
+		//printf("Task LED 2\r\n");
         vTaskDelay(200);
     }
 }
@@ -140,7 +147,7 @@ static void vTaskMsgPro(void *pvParameters)
 {
     while(1)
     {
-		printf("Task Msg Pro 3\r\n");
+		//printf("Task Msg Pro 3\r\n");
         vTaskDelay(300);
     }
 }
@@ -159,7 +166,7 @@ static void vTaskStart(void *pvParameters)
     while(1)
     {
 		/* LED闪烁 */
-		printf("Task Start 4\r\n");;
+		//printf("Task Start 4\r\n");;
         vTaskDelay(400);
     }
 }

@@ -473,12 +473,11 @@ ARM Macro Assembler    Page 8
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\flash\obj\startup_stm32f10x_md.d -o.\flash\obj\startup_stm32f10x
-_md.o -IF:\phoenix\driver\keil\Project\MDK-ARM(uV4)\RTE -IC:\Keil_v5\ARM\PACK\K
-eil\STM32F1xx_DFP\2.0.0 -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Ke
-il\STM32F1xx_DFP\2.0.0\Device\Include --predefine="__MICROLIB SETA 1" --predefi
-ne="__UVISION_VERSION SETA 514" --predefine="STM32F10X_MD SETA 1" --list=.\flas
-h\list\startup_stm32f10x_md.lst ..\..\Libraries\CMSIS\Device\ST\STM32F10x\Sourc
-e\Templates\arm\startup_stm32f10x_md.s
+_md.o -IF:\here\driver\keil\Project\MDK-ARM(uV4)\RTE -IC:\Keil_v5\ARM\PACK\Keil
+\STM32F1xx_DFP\1.0.5\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine=
+"__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 514" --predefine="STM32
+F10X_MD SETA 1" --list=.\flash\list\startup_stm32f10x_md.lst ..\..\Libraries\CM
+SIS\Device\ST\STM32F10x\Source\Templates\arm\startup_stm32f10x_md.s
 
 
 
