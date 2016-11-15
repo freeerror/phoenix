@@ -167,6 +167,58 @@ void Uart3_TX_DMA_Init(void)
 	
 	DMA_Init(DMA1_Channel2,&DMA_InitStructure);	
 }
+
+/*
+*********************************************************************************************************
+*	函 数 名: Uart3_SetTxDMAMemBaseAdd(void)
+*	功能说明: 设置串口3发送DMA的内存基地址
+*	形    参:  无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart3_SetTxDMAMemBaseAdd(uint32_t _MemBaseAdd)
+{
+	DMA_InitTypeDef DMA_InitStructure;
+	
+	DMA_InitStructure.DMA_MemoryBaseAddr = _MemBaseAdd;
+	
+	DMA_Init(DMA1_Channel2,&DMA_InitStructure);
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: Uart2_SetTxDMAMemBaseAdd(void)
+*	功能说明: 设置串口2发送DMA的内存基地址
+*	形    参:  无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart2_SetTxDMAMemBaseAdd(uint32_t _MemBaseAdd)
+{
+	DMA_InitTypeDef DMA_InitStructure;
+	
+	DMA_InitStructure.DMA_MemoryBaseAddr = _MemBaseAdd;
+	
+	DMA_Init(DMA1_Channel7,&DMA_InitStructure);
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: Uart1_SetTxDMAMemBaseAdd(void)
+*	功能说明: 设置串口1发送DMA的内存基地址
+*	形    参:  无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart1_SetTxDMAMemBaseAdd(uint32_t _MemBaseAdd)
+{
+	DMA_InitTypeDef DMA_InitStructure;
+	
+	DMA_InitStructure.DMA_MemoryBaseAddr = _MemBaseAdd;
+	
+	DMA_Init(DMA1_Channel4,&DMA_InitStructure);
+}
+
 /*
 *********************************************************************************************************
 *	函 数 名: Uart2_TX_DMA_Enable(uint16_t _len)
@@ -181,7 +233,15 @@ void Uart2_TX_DMA_Enable(uint16_t _len)
 	DMA_SetCurrDataCounter(DMA1_Channel7,_len);
 	DMA_Cmd(DMA1_Channel7,ENABLE);
 	USART_DMACmd(USART2,USART_DMAReq_Tx,ENABLE);
-	comClearTxFifo(COM2);
+	while(DMA_GetFlagStatus(DMA1_FLAG_TC7) == RESET);
+//	comClearTxFifo(COM2);
+	g_tUart2.usTxRead += _len;
+	if(g_tUart2.usTxRead >= g_tUart2.usTxBufSize)
+	{
+		g_tUart2.usTxRead = 0;
+	}
+	g_tUart2.usTxCount = 0;
+	Uart2_SetTxDMAMemBaseAdd((uint32_t)(g_TxBuf2) + g_tUart2.usTxRead);
 }
 
 /*
