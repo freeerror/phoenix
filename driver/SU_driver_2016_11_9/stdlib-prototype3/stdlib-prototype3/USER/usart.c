@@ -43,12 +43,12 @@
 
 #if UART3_FIFO_EN == 1
 	#define RCC_USART3        RCC_APB1Periph_USART3
-	#define RCC_USART3_PORT   RCC_AHBPeriph_GPIOB
-	#define GPIO_PORT_USART3  GPIOB
-	#define GPIO_PIN_TX3      GPIO_Pin_10
-	#define GPIO_PIN_RX3      GPIO_Pin_11
-	#define GPIO_PinSourceTX3 GPIO_PinSource10
-	#define GPIO_PinSourceRX3 GPIO_PinSource11
+	#define RCC_USART3_PORT   RCC_AHBPeriph_GPIOD
+	#define GPIO_PORT_USART3  GPIOD
+	#define GPIO_PIN_TX3      GPIO_Pin_8
+	#define GPIO_PIN_RX3      GPIO_Pin_9
+	#define GPIO_PinSourceTX3 GPIO_PinSource8
+	#define GPIO_PinSourceRX3 GPIO_PinSource9
 #endif
 
 static void UartVarInit(void);
@@ -73,6 +73,149 @@ void bsp_InitUart(void)
 	InitHardUart();		/* 配置串口的硬件参数(波特率等) */
 
 	ConfigUartNVIC();	/* 配置串口中断 */
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: Uart2_TX_DMA_Init(void)
+*	功能说明: 初始化串口2TX的DMA通道
+*	形    参:  无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart2_TX_DMA_Init(void)
+{
+	DMA_InitTypeDef DMA_InitStructure;
+	
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1,ENABLE);
+	
+	DMA_DeInit(DMA1_Channel7);
+	
+	DMA_InitStructure.DMA_PeripheralBaseAddr = UART2_DR_ADDRESS;
+	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)g_TxBuf2;
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+	DMA_InitStructure.DMA_BufferSize = 64;
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_Medium;
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+	
+	DMA_Init(DMA1_Channel7,&DMA_InitStructure);	
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: Uart1_TX_DMA_Init(void)
+*	功能说明: 初始化串口1TX的DMA通道
+*	形    参:  无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart1_TX_DMA_Init(void)
+{
+	DMA_InitTypeDef DMA_InitStructure;
+	
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1,ENABLE);
+	
+	DMA_DeInit(DMA1_Channel4);
+	
+	DMA_InitStructure.DMA_PeripheralBaseAddr = UART1_DR_ADDRESS;
+	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)g_TxBuf1;
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+	DMA_InitStructure.DMA_BufferSize = 64;
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_Medium;
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+	
+	DMA_Init(DMA1_Channel4,&DMA_InitStructure);	
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: Uart3_TX_DMA_Init(void)
+*	功能说明: 初始化串口3TX的DMA通道
+*	形    参:  无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart3_TX_DMA_Init(void)
+{
+	DMA_InitTypeDef DMA_InitStructure;
+	
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1,ENABLE);
+	
+	DMA_DeInit(DMA1_Channel2);
+	
+	DMA_InitStructure.DMA_PeripheralBaseAddr = UART3_DR_ADDRESS;
+	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)g_TxBuf3;
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+	DMA_InitStructure.DMA_BufferSize = 64;
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_Medium;
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+	
+	DMA_Init(DMA1_Channel2,&DMA_InitStructure);	
+}
+/*
+*********************************************************************************************************
+*	函 数 名: Uart2_TX_DMA_Enable(uint16_t _len)
+*	功能说明: 开启一次串2TX的DMA传输
+*	形    参:  _len:一次所要传输的数据的长度
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart2_TX_DMA_Enable(uint16_t _len)
+{
+	DMA_Cmd(DMA1_Channel7,DISABLE);
+	DMA_SetCurrDataCounter(DMA1_Channel7,_len);
+	DMA_Cmd(DMA1_Channel7,ENABLE);
+	USART_DMACmd(USART2,USART_DMAReq_Tx,ENABLE);
+	comClearTxFifo(COM2);
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: Uart1_TX_DMA_Enable(uint16_t _len)
+*	功能说明: 开启一次串1TX的DMA传输
+*	形    参:  _len:一次所要传输的数据的长度
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart1_TX_DMA_Enable(uint16_t _len)
+{
+	DMA_Cmd(DMA1_Channel4,DISABLE);
+	DMA_SetCurrDataCounter(DMA1_Channel4,_len);
+	DMA_Cmd(DMA1_Channel4,ENABLE);
+	USART_DMACmd(USART1,USART_DMAReq_Tx,ENABLE);
+	comClearTxFifo(COM1);
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: Uart3_TX_DMA_Enable(uint16_t _len)
+*	功能说明: 开启一次串3TX的DMA传输
+*	形    参:  _len:一次所要传输的数据的长度
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void Uart3_TX_DMA_Enable(uint16_t _len)
+{
+	DMA_Cmd(DMA1_Channel2,DISABLE);
+	DMA_SetCurrDataCounter(DMA1_Channel2,_len);
+	DMA_Cmd(DMA1_Channel2,ENABLE);
+	USART_DMACmd(USART3,USART_DMAReq_Tx,ENABLE);
+	comClearTxFifo(COM3);
 }
 
 /*
@@ -109,22 +252,6 @@ UART_T *ComToUart(COM_PORT_E _ucPort)
 			return 0;
 		#endif
 	}
-	else if (_ucPort == COM4)
-	{
-		#if UART4_FIFO_EN == 1
-			return &g_tUart4;
-		#else
-			return 0;
-		#endif
-	}
-	else if (_ucPort == COM5)
-	{
-		#if UART5_FIFO_EN == 1
-			return &g_tUart5;
-		#else
-			return 0;
-		#endif
-	}
 	else
 	{
 		/* 不做任何处理 */
@@ -135,11 +262,12 @@ UART_T *ComToUart(COM_PORT_E _ucPort)
 /*
 *********************************************************************************************************
 *	函 数 名: comSendBuf
-*	功能说明: 向串口发送一组数据。数据放到发送缓冲区后立即返回，由中断服务程序在后台完成发送
+*	功能说明: 向串口发送一组数据。数据放到发送缓冲区后立即返回，由DMA传输到串口
 *	形    参: _ucPort: 端口号(COM1 - COM6)
 *			  _ucaBuf: 待发送的数据缓冲区
 *			  _usLen : 数据长度
 *	返 回 值: 无
+* 注：当发送数据比较长时，两次调用之间必须要有一定的时间间隔，以等待DMA传输完成
 *********************************************************************************************************
 */
 void comSendBuf(COM_PORT_E _ucPort, uint8_t *_ucaBuf, uint16_t _usLen)
@@ -393,6 +521,8 @@ static void InitHardUart(void)
 	USART_Cmd(USART1, ENABLE);		/* 使能串口 */
 
 	USART_ClearFlag(USART1, USART_FLAG_TC);     /* 清发送完成标志，Transmission Complete flag */
+	
+	Uart1_TX_DMA_Init();
 #endif
 
 #if UART2_FIFO_EN == 1		/* 串口2 TX = PA2， RX = PA3  */
@@ -426,6 +556,8 @@ static void InitHardUart(void)
 	USART_Cmd(USART2, ENABLE);		/* 使能串口 */
 
 	USART_ClearFlag(USART2, USART_FLAG_TC);     /* 清发送完成标志，Transmission Complete flag */
+	
+	Uart2_TX_DMA_Init();
 #endif
 
 #if UART3_FIFO_EN == 1			/* 串口3 TX = PB10   RX = PB11 */
@@ -459,6 +591,8 @@ static void InitHardUart(void)
 	USART_Cmd(USART3, ENABLE);		/* 使能串口 */
 
 	USART_ClearFlag(USART3, USART_FLAG_TC);     /* 清发送完成标志，Transmission Complete flag */
+	
+	Uart3_TX_DMA_Init();
 #endif
 }
 
@@ -540,9 +674,9 @@ static void UartSend(UART_T *_pUart, uint8_t *_ucaBuf, uint16_t _usLen)
 		{
 			__IO uint16_t usCount;
 
-			DISABLE_INT();
+//			DISABLE_INT();
 			usCount = _pUart->usTxCount;
-			ENABLE_INT();
+//			ENABLE_INT();
 
 			if (usCount < _pUart->usTxBufSize)
 			{
@@ -554,16 +688,29 @@ static void UartSend(UART_T *_pUart, uint8_t *_ucaBuf, uint16_t _usLen)
 		/* 将新数据填入发送缓冲区 */
 		_pUart->pTxBuf[_pUart->usTxWrite] = _ucaBuf[i];
 
-		DISABLE_INT();
+//		DISABLE_INT();
 		if (++_pUart->usTxWrite >= _pUart->usTxBufSize)
 		{
 			_pUart->usTxWrite = 0;
 		}
 		_pUart->usTxCount++;
-		ENABLE_INT();
+//		ENABLE_INT();
+	}
+	
+	if(_pUart->uart == USART1)
+	{
+	  Uart1_TX_DMA_Enable(_usLen);
+	}
+	else if(_pUart->uart == USART2)
+	{
+		Uart2_TX_DMA_Enable(_usLen);
+	}
+	else if(_pUart->uart == USART3)
+	{
+		Uart3_TX_DMA_Enable(_usLen);
 	}
 
-	USART_ITConfig(_pUart->uart, USART_IT_TXE, ENABLE);
+  //USART_ITConfig(_pUart->uart, USART_IT_TXE, ENABLE);
 }
 
 /*
@@ -640,58 +787,58 @@ static void UartIRQ(UART_T *_pUart)
 		}
 	}
 
-	/* 处理发送缓冲区空中断 */
-	if (USART_GetITStatus(_pUart->uart, USART_IT_TXE) != RESET)
-	{
-		//if (_pUart->usTxRead == _pUart->usTxWrite)
-		if (_pUart->usTxCount == 0)
-		{
-			/* 发送缓冲区的数据已取完时， 禁止发送缓冲区空中断 （注意：此时最后1个数据还未真正发送完毕）*/
-			USART_ITConfig(_pUart->uart, USART_IT_TXE, DISABLE);
+//	/* 处理发送缓冲区空中断 */
+//	if (USART_GetITStatus(_pUart->uart, USART_IT_TXE) != RESET)
+//	{
+//		//if (_pUart->usTxRead == _pUart->usTxWrite)
+//		if (_pUart->usTxCount == 0)
+//		{
+//			/* 发送缓冲区的数据已取完时， 禁止发送缓冲区空中断 （注意：此时最后1个数据还未真正发送完毕）*/
+//			USART_ITConfig(_pUart->uart, USART_IT_TXE, DISABLE);
 
-			/* 使能数据发送完毕中断 */
-			USART_ITConfig(_pUart->uart, USART_IT_TC, ENABLE);
-		}
-		else
-		{
-			/* 从发送FIFO取1个字节写入串口发送数据寄存器 */
-			USART_SendData(_pUart->uart, _pUart->pTxBuf[_pUart->usTxRead]);
-			if (++_pUart->usTxRead >= _pUart->usTxBufSize)
-			{
-				_pUart->usTxRead = 0;
-			}
-			_pUart->usTxCount--;
-		}
+//			/* 使能数据发送完毕中断 */
+//			USART_ITConfig(_pUart->uart, USART_IT_TC, ENABLE);
+//		}
+//		else
+//		{
+//			/* 从发送FIFO取1个字节写入串口发送数据寄存器 */
+//			USART_SendData(_pUart->uart, _pUart->pTxBuf[_pUart->usTxRead]);
+//			if (++_pUart->usTxRead >= _pUart->usTxBufSize)
+//			{
+//				_pUart->usTxRead = 0;
+//			}
+//			_pUart->usTxCount--;
+//		}
 
-	}
-	/* 数据bit位全部发送完毕的中断 */
-	else if (USART_GetITStatus(_pUart->uart, USART_IT_TC) != RESET)
-	{
-		//if (_pUart->usTxRead == _pUart->usTxWrite)
-		if (_pUart->usTxCount == 0)
-		{
-			/* 如果发送FIFO的数据全部发送完毕，禁止数据发送完毕中断 */
-			USART_ITConfig(_pUart->uart, USART_IT_TC, DISABLE);
+//	}
+//	/* 数据bit位全部发送完毕的中断 */
+//	else if (USART_GetITStatus(_pUart->uart, USART_IT_TC) != RESET)
+//	{
+//		//if (_pUart->usTxRead == _pUart->usTxWrite)
+//		if (_pUart->usTxCount == 0)
+//		{
+//			/* 如果发送FIFO的数据全部发送完毕，禁止数据发送完毕中断 */
+//			USART_ITConfig(_pUart->uart, USART_IT_TC, DISABLE);
 
-			/* 回调函数, 一般用来处理RS485通信，将RS485芯片设置为接收模式，避免抢占总线 */
-			if (_pUart->SendOver)
-			{
-				_pUart->SendOver();
-			}
-		}
-		else
-		{
-			/* 正常情况下，不会进入此分支 */
+//			/* 回调函数, 一般用来处理RS485通信，将RS485芯片设置为接收模式，避免抢占总线 */
+//			if (_pUart->SendOver)
+//			{
+//				_pUart->SendOver();
+//			}
+//		}
+//		else
+//		{
+//			/* 正常情况下，不会进入此分支 */
 
-			/* 如果发送FIFO的数据还未完毕，则从发送FIFO取1个数据写入发送数据寄存器 */
-			USART_SendData(_pUart->uart, _pUart->pTxBuf[_pUart->usTxRead]);
-			if (++_pUart->usTxRead >= _pUart->usTxBufSize)
-			{
-				_pUart->usTxRead = 0;
-			}
-			_pUart->usTxCount--;
-		}
-	}
+//			/* 如果发送FIFO的数据还未完毕，则从发送FIFO取1个数据写入发送数据寄存器 */
+//			USART_SendData(_pUart->uart, _pUart->pTxBuf[_pUart->usTxRead]);
+//			if (++_pUart->usTxRead >= _pUart->usTxBufSize)
+//			{
+//				_pUart->usTxRead = 0;
+//			}
+//			_pUart->usTxCount--;
+//		}
+//	}
 }
 
 /*

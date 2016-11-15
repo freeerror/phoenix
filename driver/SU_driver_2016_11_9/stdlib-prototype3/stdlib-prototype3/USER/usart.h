@@ -16,8 +16,6 @@ typedef enum
 	COM1 = 0,	/* USART1  PA9, PA10 */
 	COM2 = 1,	/* USART2, PA2, PA3 */
 	COM3 = 2,	/* USART3, PB10, PB11 */
-	COM4 = 3,	/* UART4, PC10, PC11 */
-	COM5 = 4,	/* UART5, PC12, PD2 */
 }COM_PORT_E;
 
 /* 定义串口波特率和FIFO缓冲区大小，分为发送缓冲区和接收缓冲区, 支持全双工 */
@@ -32,21 +30,24 @@ typedef enum
   实际上注释掉串口中断函数里的接收中断函数，在2MHz主频，115200波特率情况下，接收到的数据都是完整的，但没有发送中断，数据无法发送。
 */
 #if UART1_FIFO_EN == 1
-	#define UART1_BAUD			9600
+	#define UART1_BAUD			115200
 	#define UART1_TX_BUF_SIZE	1*1024
 	#define UART1_RX_BUF_SIZE	1*1024
+  #define UART1_DR_ADDRESS  0x40013804
 #endif
 
 #if UART2_FIFO_EN == 1
-	#define UART2_BAUD			9600
+	#define UART2_BAUD			115200
 	#define UART2_TX_BUF_SIZE	1*1024
 	#define UART2_RX_BUF_SIZE	1*1024
+	#define UART2_DR_ADDRESS  0x40004404
 #endif
 
 #if UART3_FIFO_EN == 1
 	#define UART3_BAUD			9600
 	#define UART3_TX_BUF_SIZE	1*1024
 	#define UART3_RX_BUF_SIZE	1*1024
+	#define UART3_DR_ADDRESS  0x40004804
 #endif
 
 /* 串口设备结构体 */
