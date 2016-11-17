@@ -25,9 +25,9 @@ int main(void)
 //	uint8_t block_bytes[16];
 //	nt3h1101_id_t nt3h1101_id;.
 //  nt3h1101_reg_t nt3h1101_reg;
-    uint8_t ucValue;	
-	const char *string1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!\r\n";
-	const char *string2 = "12345678901234567890123!\r\n";
+    int ucValue;	
+//	const char *string1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!\r\n";
+//	const char *string2 = "1234567890!\r\n";
 //	char str[200];
 	
 	delay_init();
@@ -55,17 +55,17 @@ int main(void)
 	
   while(1)
   {
-//		if(comGetChar(COM2,&ucValue))
-//		{
-//			comSendChar(COM2,ucValue);
-//		}
 
-			comSendBuf(COM2,(uint8_t *)(string1),strlen(string1));
-//		  delay_ms(10);
-			comSendBuf(COM2,(uint8_t *)(string2),strlen(string2));
-//		  delay_ms(1000);
+	printf("请输入value，回车结束\r\n");
+	scanf("%d",&ucValue);
+	printf("所输入的整数为：value = %d\r\n",ucValue);
+	delay_ms(1000);
   }
 }
+
+//comSendBuf(COM3,(uint8_t *)(string1),strlen(string1));
+//comSendBuf(COM3,(uint8_t *)(string2),strlen(string2));
+
 
 //		printf("请输入value，回车结束\r\n");
 //		scanf("%d",&ucValue);
