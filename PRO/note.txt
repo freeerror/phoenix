@@ -1,0 +1,5 @@
+IAR+KEIL+FreeRTOS+STM32F103文件夹下是一个基于stm32f103系列的freertos工程，可以用IAR或keil操作
+
+SU_Driver文件夹下是一个基于stm32l151/2系列的keil工程，只能用keil操作
+
+IAR+FreeRTOS+STM32L1xx文件夹下是一个基于stm32l1xx系列的freertos工程，目前只能用iar操作
