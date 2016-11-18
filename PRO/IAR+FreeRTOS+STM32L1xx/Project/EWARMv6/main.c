@@ -21,6 +21,7 @@ static TaskHandle_t xHandleTaskLED = NULL;
 static TaskHandle_t xHandleTaskMsgPro = NULL;
 static TaskHandle_t xHandleTaskStart = NULL;
 
+int _testStep;
 /*
 *********************************************************************************************************
 *	函 数 名: main
@@ -61,8 +62,7 @@ static void vTaskTaskUserIF(void *pvParameters)
 {
     while(1)
     {
-      printf("A\r\n");
-      vTaskDelay(1000 / portTICK_RATE_MS);
+
     }
 }
 
@@ -111,8 +111,26 @@ static void vTaskMsgPro(void *pvParameters)
 */
 static void vTaskStart(void *pvParameters)
 {
+
+	printf("新版箱押卫士硬件测试!\r\n");
+	printf("1. 蜂鸣器测试。\r\n");
     while(1)
     {
+
+		scanf("%d",&_testStep);
+        printf("%d\r\n",_testStep);
+		switch(_testStep)
+		{
+
+			case 1:
+				hal_beep(ENABLE);
+				vTaskDelay(1000 / portTICK_RATE_MS);
+				hal_beep(DISABLE);
+				break;
+
+			default:
+				break;
+		}
 
     }
 }
@@ -134,7 +152,7 @@ static void AppTaskCreate (void)
                  1,                 	/* 任务优先级*/
                  &xHandleTaskUserIF );  /* 任务句柄  */
 	
-	#if 0
+	#if 1
 	xTaskCreate( vTaskLED,    		/* 任务函数  */
                  "vTaskLED",  		/* 任务名    */
                  512,         		/* 任务栈大小，单位word，也就是4字节 */

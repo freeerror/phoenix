@@ -1,6 +1,4 @@
-#include "usart.h"
-#include "string.h"
-#include <stdio.h>
+#include "includes.h"
 
 /* 定义每个串口结构体变量 */
 #if UART1_FIFO_EN == 1
@@ -835,7 +833,7 @@ int fputc(int ch, FILE *f)
 	USART_SendData(USART2, (uint8_t) ch);
 
 	/* 等待发送结束 */
-	while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET)
+	while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET)
 	{}
 
 	return ch;

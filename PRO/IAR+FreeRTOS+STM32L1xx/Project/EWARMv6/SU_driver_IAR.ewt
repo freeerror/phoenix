@@ -2097,6 +2097,9 @@
   <group>
     <name>BSP</name>
     <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\beep.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\User\bsp\bsp.c</name>
     </file>
     <file>
@@ -2161,6 +2164,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\FreeRTOS\timers.c</name>
+    </file>
+  </group>
+  <group>
+    <name>HAL</name>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_beep.c</name>
     </file>
   </group>
   <group>

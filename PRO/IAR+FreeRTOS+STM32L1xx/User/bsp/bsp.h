@@ -52,8 +52,12 @@
 #include "bsp_led.h"
 #include "bsp_timer.h"
 #include "bsp_key.h"
-
+#include "beep.h"
 #include "bsp_uart_fifo.h"
+#include "hal_beep.h"
+
+extern int _testStep;
+
 
 /* 提供给其他C文件调用的函数 */
 void bsp_Init(void);

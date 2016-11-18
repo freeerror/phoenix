@@ -39,12 +39,8 @@ void bsp_Init(void)
 	/* 优先级分组设置为4 */
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 	
-	//bsp_InitLed();		/* 配置LED的GPIO端口 */
-	//bsp_InitKey();		/* 初始化按键 */
-	
-	//bsp_InitTimer();	/* 初始化系统滴答定时器 (此函数会开中断) */
-	
 	bsp_InitUart();		/* 初始化串口驱动 */
+	hal_beep_init();
 }
 
 /*

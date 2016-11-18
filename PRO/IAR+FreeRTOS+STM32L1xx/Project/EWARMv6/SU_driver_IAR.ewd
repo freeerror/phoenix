@@ -45,7 +45,7 @@
         </option>
         <option>
           <name>MemFile</name>
-          <state>$TOOLKIT_DIR$\CONFIG\debugger\ST\STM32L151xC.ddf</state>
+          <state>$TOOLKIT_DIR$\CONFIG\debugger\ST\STM32L162xD.ddf</state>
         </option>
         <option>
           <name>RunToEnable</name>
@@ -85,7 +85,7 @@
         </option>
         <option>
           <name>OCDynDriverList</name>
-          <state>STLINK_ID</state>
+          <state>JLINK_ID</state>
         </option>
         <option>
           <name>OCLastSavedByProductVersion</name>
@@ -117,7 +117,7 @@
         </option>
         <option>
           <name>FlashLoadersV3</name>
-          <state>$TOOLKIT_DIR$\config\flashloader\ST\FlashSTM32L15xxC.board</state>
+          <state>$TOOLKIT_DIR$\config\flashloader\ST\FlashSTM32L16xxx.board</state>
         </option>
         <option>
           <name>OCImagesSuppressCheck1</name>
@@ -848,7 +848,7 @@
         </option>
         <option>
           <name>CCJLinkInterfaceRadio</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>OCJLinkAttachSlave</name>
@@ -857,7 +857,7 @@
         <option>
           <name>CCJLinkResetList</name>
           <version>6</version>
-          <state>5</state>
+          <state>7</state>
         </option>
         <option>
           <name>CCJLinkInterfaceCmdLine</name>
@@ -918,7 +918,7 @@
         </option>
         <option>
           <name>CCCpuClockEdit</name>
-          <state></state>
+          <state>32.0</state>
         </option>
         <option>
           <name>CCSwoClockAuto</name>
