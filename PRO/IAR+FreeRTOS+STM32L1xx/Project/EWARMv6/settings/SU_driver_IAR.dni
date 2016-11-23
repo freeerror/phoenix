@@ -10,8 +10,10 @@ LimitSize=0
 ByteLimit=50
 [StLinkDriver]
 CStepIntDis=_ 0
+stlinkserialNo=E04058CD
+stlinkfoundProbes=
 [DebugChecksum]
-Checksum=1870322425
+Checksum=-1768990503
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -43,6 +45,8 @@ ITMportsEnable=0
 ITMportsTermIO=0
 ITMportsLogFile=0
 ITMlogFile=$PROJ_DIR$\ITM.log
+[array_types]
+Fmt0=uint32_t[3]	4	0
 [Trace1]
 Enabled=0
 ShowSource=1
@@ -103,7 +107,7 @@ LoggingEnabled=_ 0
 LogFile=_ ""
 [DriverProfiling]
 Enabled=0
-Mode=1
+Mode=3
 Graph=0
 Symbiont=0
 Exclusions=

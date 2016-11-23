@@ -186,7 +186,7 @@
         <option>
           <name>CCDefines</name>
           <state>USE_STDPERIPH_DRIVER</state>
-          <state>STM32L1XX_HD</state>
+          <state>STM32L1XX_MDP</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -1930,6 +1930,9 @@
       <name>$PROJ_DIR$\..\..\User\bsp\bsp.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\platform.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\User\bsp\stm32l1xx_it.c</name>
     </file>
     <file>
@@ -1997,6 +2000,9 @@
     <name>HAL</name>
     <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\hal_beep.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_platform.c</name>
     </file>
   </group>
   <group>

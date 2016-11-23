@@ -53,11 +53,40 @@
 #include "bsp_timer.h"
 #include "bsp_key.h"
 #include "beep.h"
-#include "bsp_uart_fifo.h"
+#include "platform.h"
+#include "sys_reset.h"
+#include "usart.h"
 #include "hal_beep.h"
+#include "hal_platform.h"
 
-extern int _testStep;
-
+//--- Error definitions --------------------------------------------------------
+typedef enum
+{    // Note: Enums are zigzag-encoded to write the values correctly by just writing/reading the bytes directly
+	NO_ERROR,
+	SYNC,
+	INVALID_CMD,
+	CORRUPT_SIZE,
+	CORRUPT_DATA,
+	COMMAND_NOT_FOUND,
+	NO_COMMAND_HANDLER,
+	BUSY,
+	TIMEOUT,
+	INVALID_ARG,
+	ACCESS_DENIED,
+	CHECKSUM_ERROR,
+	FLASH_WRITE_ERROR,
+	INTERNAL_ERROR,
+	NTAG_ERROR,
+	ACCELEROMETER_ERROR,
+	LIGHT_SENSOR_ERROR,
+	LOG_ERROR,
+	FALL_OFF_ERROR,
+	CLAMP_ERROR,
+	LOCK_ERROR,
+	PSV_ERROR,
+	TEMP_RH_ERROR,
+	end
+}error_t;
 
 /* 提供给其他C文件调用的函数 */
 void bsp_Init(void);

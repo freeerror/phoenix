@@ -21,7 +21,6 @@ static TaskHandle_t xHandleTaskLED = NULL;
 static TaskHandle_t xHandleTaskMsgPro = NULL;
 static TaskHandle_t xHandleTaskStart = NULL;
 
-int _testStep;
 /*
 *********************************************************************************************************
 *	函 数 名: main
@@ -111,25 +110,65 @@ static void vTaskMsgPro(void *pvParameters)
 */
 static void vTaskStart(void *pvParameters)
 {
+  static char step;
+  uint8_t i;
+  uint32_t device_id;
+  uint32_t device_revision;
+  uint32_t flash_size;
+  uint8_t unique_id[12];
 
 	printf("新版箱押卫士硬件测试!\r\n");
 	printf("1. 蜂鸣器测试。\r\n");
+    printf("2. 系统复位测试。\r\n");
+    printf("3. 获取MCU的Device ID。\r\n");
+    printf("4. 获取MCU的Revision ID。\r\n");
+    printf("5. 获取MCU的Flash Size。\r\n");
+    printf("6. 获取MCU的Unique ID。 \r\n");
     while(1)
     {
-
-		scanf("%d",&_testStep);
-        printf("%d\r\n",_testStep);
-		switch(_testStep)
+		scanf("%c",&step);
+        printf("%c\r\n",step);
+	    switch(step)
 		{
 
-			case 1:
+			case 0x31:
 				hal_beep(ENABLE);
 				vTaskDelay(1000 / portTICK_RATE_MS);
 				hal_beep(DISABLE);
 				break;
 
+            case 0x32:
+                hal_system_reset();
+                break;
+
+            case 0x33:
+                hal_get_device_id(&device_id);
+                printf("Device ID = 0x%X\r\n",device_id);
+                break;
+
+            case 0x34:
+                hal_get_device_revision(&device_revision);
+                printf("Device Revision = 0x%X\r\n",device_revision);
+                break;
+
+            case 0x35:
+                hal_get_flash_size(&flash_size);
+                printf("Flash Size = %ld\r\n",flash_size);
+                break;
+
+            case 0x36:
+                get_unique_id(unique_id);
+                printf("Unique ID = 0x");
+                for(i = 0;i < 12;i++)
+                {
+
+                    printf("%2X",unique_id[i]);
+                }
+                printf("\r\n");
+                break;
+
 			default:
-				break;
+			    break;
 		}
 
     }

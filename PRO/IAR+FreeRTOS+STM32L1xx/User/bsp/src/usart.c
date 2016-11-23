@@ -727,8 +727,6 @@ static uint8_t UartGetChar(UART_T *_pUart, uint8_t *_pByte)
 	usCount = _pUart->usRxCount;
 	ENABLE_INT();
 
-	/* 如果读和写索引相同，则返回0 */
-	//if (_pUart->usRxRead == usRxWrite)
 	if (usCount == 0)	/* 已经没有数据 */
 	{
 		return 0;
@@ -813,6 +811,7 @@ void USART3_IRQHandler(void)
 	UartIRQ(&g_tUart3);
 }
 #endif
+
 
 /*
 *********************************************************************************************************
