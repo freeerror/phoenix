@@ -13,7 +13,7 @@ CStepIntDis=_ 0
 stlinkserialNo=E04058CD
 stlinkfoundProbes=
 [DebugChecksum]
-Checksum=-1768990503
+Checksum=-1344749245
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -71,6 +71,8 @@ ShowTimeLog=1
 LiveEnabled=0
 LiveFile=PowerLogLive.log
 [DataLog]
+Title_0=bsp_Init
+Symbol_0=0 4 1
 LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
@@ -122,7 +124,10 @@ ProbeSetup0=2 1 1 2 0 0
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Count=0
+Bp0=_ 1 "EMUL_DATA" "sht20_read_temp" 0 0 0 0 4294967295
+Bp1=_ 0 "EMUL_DATA" "DMA_LED_DATA" 0 0 0 0 4294967295
+Bp2=_ 1 "EMUL_DATA_LOG" "bsp_Init" 0 0
+Count=3
 [Aliases]
 Count=0
 SuppressDialog=0

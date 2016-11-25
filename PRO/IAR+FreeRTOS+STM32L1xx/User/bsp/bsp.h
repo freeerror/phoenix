@@ -32,9 +32,8 @@
 #define ENABLE_INT()	__set_PRIMASK(0)	/* 使能全局中断 */
 #define DISABLE_INT()	__set_PRIMASK(1)	/* 禁止全局中断 */
 
-/* 这个宏仅用于调试阶段排错 */
-#define BSP_Printf		printf
-//#define BSP_Printf(...)
+typedef enum {FALSE = 0, TRUE = !FALSE} bool;
+
 
 #include "stm32l1xx.h"
 #include <stdio.h>
@@ -49,44 +48,22 @@
 	#define FALSE 0
 #endif
 
-#include "bsp_led.h"
-#include "bsp_timer.h"
-#include "bsp_key.h"
+#include "i2c.h"
 #include "beep.h"
 #include "platform.h"
-#include "sys_reset.h"
+#include "opt3001.h"
+#include "SHT20.h"
+#include "ADXL345.h"
+#include "nt3h1101.h"
+#include "WS2812.h"
 #include "usart.h"
 #include "hal_beep.h"
 #include "hal_platform.h"
-
-//--- Error definitions --------------------------------------------------------
-typedef enum
-{    // Note: Enums are zigzag-encoded to write the values correctly by just writing/reading the bytes directly
-	NO_ERROR,
-	SYNC,
-	INVALID_CMD,
-	CORRUPT_SIZE,
-	CORRUPT_DATA,
-	COMMAND_NOT_FOUND,
-	NO_COMMAND_HANDLER,
-	BUSY,
-	TIMEOUT,
-	INVALID_ARG,
-	ACCESS_DENIED,
-	CHECKSUM_ERROR,
-	FLASH_WRITE_ERROR,
-	INTERNAL_ERROR,
-	NTAG_ERROR,
-	ACCELEROMETER_ERROR,
-	LIGHT_SENSOR_ERROR,
-	LOG_ERROR,
-	FALL_OFF_ERROR,
-	CLAMP_ERROR,
-	LOCK_ERROR,
-	PSV_ERROR,
-	TEMP_RH_ERROR,
-	end
-}error_t;
+#include "hal_brightness.h"
+#include "hal_tempRh.h"
+#include "hal_acc_sensor.h"
+#include "hal_nfc.h"
+#include "hal_led.h"
 
 /* 提供给其他C文件调用的函数 */
 void bsp_Init(void);

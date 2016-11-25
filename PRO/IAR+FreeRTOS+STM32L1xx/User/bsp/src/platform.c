@@ -79,3 +79,35 @@ void get_unique_id(uint8_t * UniqueID)
     memcpy(UniqueID,temp,12);
 }
 
+void get_boot_index(uint8_t * BootIndex)
+{
+    uint32_t temp;
+    temp = SYSCFG_GetBootMode();
+    switch(temp)
+    {
+        case 0x00000000: //Main flash memory
+            *BootIndex = 0; 
+            break;
+
+        case 0x00000100: //System flash memory
+            *BootIndex = 1;
+            break;
+
+        case 0x00000200: //FSMC memory
+            *BootIndex = 2;
+            break;
+
+        case 0x00000300: //Embedded SRAM memory
+            *BootIndex = 3;
+            break;
+
+        default:
+            break;
+    }
+}
+
+void get_version(uint32_t * Version)
+{
+    *Version = VERSION;
+}
+

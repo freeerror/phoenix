@@ -16,7 +16,7 @@
 *********************************************************************************************************
 */
 
-#include "bsp.h"
+#include "includes.h"
 
 /*
 *********************************************************************************************************
@@ -27,6 +27,14 @@
 *	返 回 值: 无
 *********************************************************************************************************
 */
+
+void delay(void)
+{
+    int i = 0;
+
+    for(i = 0;i < 5000;i++);
+}
+
 void bsp_Init(void)
 {
 	/*
@@ -35,12 +43,15 @@ void bsp_Init(void)
 
 		系统时钟缺省配置为72MHz，如果需要更改，可以修改 system_stm32f103.c 文件
 	*/
-
+    delay();//时钟初始化以后先等待一段时间，以等待系统稳定
 	/* 优先级分组设置为4 */
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 	
 	bsp_InitUart();		/* 初始化串口驱动 */
 	hal_beep_init();
+    i2c1_init();
+    WS2812_Timer_Init();
+    adxl345_init();
 }
 
 /*
@@ -54,7 +65,7 @@ void bsp_Init(void)
 */
 void bsp_RunPer10ms(void)
 {
-	bsp_KeyScan();		/* 每10ms扫描按键一次 */
+
 }
 
 /*
@@ -69,7 +80,7 @@ void bsp_RunPer10ms(void)
 extern void GT811_Timer1ms(void);
 void bsp_RunPer1ms(void)
 {
-	;
+
 }
 
 /*
