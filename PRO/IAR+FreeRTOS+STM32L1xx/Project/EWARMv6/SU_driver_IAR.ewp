@@ -186,7 +186,7 @@
         <option>
           <name>CCDefines</name>
           <state>USE_STDPERIPH_DRIVER</state>
-          <state>STM32L1XX_HD</state>
+          <state>STM32L1XX_MDP</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -1922,7 +1922,16 @@
     </settings>
   </configuration>
   <group>
+    <name>APP</name>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\nfc_module.c</name>
+    </file>
+  </group>
+  <group>
     <name>BSP</name>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\adxl345.c</name>
+    </file>
     <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\beep.c</name>
     </file>
@@ -1930,10 +1939,28 @@
       <name>$PROJ_DIR$\..\..\User\bsp\bsp.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\I2c.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\nt3h1101.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\opt3001.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\platform.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\SHT20.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\User\bsp\stm32l1xx_it.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\usart.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\WS2812.c</name>
     </file>
   </group>
   <group>
@@ -1996,7 +2023,25 @@
   <group>
     <name>HAL</name>
     <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_acc_sensor.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\hal_beep.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_brightness.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_led.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_nfc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_platform.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_tempRh.c</name>
     </file>
   </group>
   <group>
