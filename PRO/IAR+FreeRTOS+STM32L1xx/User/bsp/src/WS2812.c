@@ -68,7 +68,11 @@
 void led_on(ws2812_position_t ws2812_position);
 void led_off(ws2812_position_t ws2812_position);
 
-uint16_t LED_BYTE_Buffer[LED_BIT_CNT] = {PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,
+uint16_t LED_BYTE_Buffer[LED_BIT_CNT] = {
+                                         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                         PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,
                                          PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,
                                          PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,
                                          PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,PWM_DUTY_0,
@@ -224,7 +228,7 @@ void low_level_setled(ws2812_position_t position,ws2812_color_t color,uint8_t se
   base_color_t base_color;
 	uint8_t i;
 	
-	bit_cnt = position * 24;
+	bit_cnt = position * 24 + 48;
 	
 	switch(color)
 	{

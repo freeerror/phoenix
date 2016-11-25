@@ -5,11 +5,11 @@
 #define TIM3_CCR3_ADDRESS  0x4000043C
 
 
-#define PWM_PERIOD         0x0C
+#define PWM_PERIOD         0x0D
 #define PWM_DUTY_1         0x02
 #define PWM_DUTY_0         0x01
 
-#define LED_BIT_CNT        192
+#define LED_BIT_CNT        (192+48)
 
 //LEDµ∆Œª÷√∑÷≤º£∫
 //top_left                 top_middle               top_right      
