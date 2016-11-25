@@ -64,6 +64,7 @@ typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 #include "hal_acc_sensor.h"
 #include "hal_nfc.h"
 #include "hal_led.h"
+#include "nfc_module.h"
 
 /* 提供给其他C文件调用的函数 */
 void bsp_Init(void);

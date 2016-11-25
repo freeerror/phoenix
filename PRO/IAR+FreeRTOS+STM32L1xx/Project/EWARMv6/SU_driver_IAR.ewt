@@ -2095,6 +2095,12 @@
     </settings>
   </configuration>
   <group>
+    <name>APP</name>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\nfc_module.c</name>
+    </file>
+  </group>
+  <group>
     <name>BSP</name>
     <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\adxl345.c</name>
