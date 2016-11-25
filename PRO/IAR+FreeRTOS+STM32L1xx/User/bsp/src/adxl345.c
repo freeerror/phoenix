@@ -409,22 +409,23 @@ adxl345_status_t adxl345_init(void)
 {
 	adxl345_status_t adxl345_status;
     adxl345_reg_t adxl345_reg_devid;
-    
-	adxl345_reg_devid = adxl345_read_one_byte(ADXL345DeviceIDAdd);
-    /*if(adxl345_reg_devid.adxl345_status == ADXL345_ERR)
+    uint8_t retry = 0;
+
+    do
     {
-        return ADXL345_ERR;
-    }
-	//Stop measure
-	//power_ctl_reg.power_ctl_bits.measure = ADXL345StopMeasure;
-	//adxl345_status = adxl345_write_one_byte(ADXL345PowerCTLAdd,power_ctl_reg.power_ctl_total);
-	//if(adxl345_status == ADXL345_ERR)
-	//{
-	//	return ADXL345_ERR;
-	//}
+        adxl345_reg_devid = adxl345_read_one_byte(ADXL345DeviceIDAdd);//读取adxl345的device id
+        retry++;
+        if(retry > 10)//多次尝试没有回应则退出循环，返回error
+        {
+            return ADXL345_ERR;
+        }
+        
+    }while(adxl345_reg_devid.adxl345_status == ADXL345_ERR);//直到adxl345成功回应，才继续操作
+	
+    
 	//Config data format
-	/*data_format_reg.data_format_bits.full_res = ADXL345FullResolution;
-	data_format_reg.data_format_bits.range = ADXL345Range16g;
+	data_format_reg.data_format_bits.full_res = ADXL345FullResolution;//最高分辨率
+	data_format_reg.data_format_bits.range = ADXL345Range16g;//±16g量程
 	adxl345_status = adxl345_write_one_byte(ADXL345DataFormatRegAdd,data_format_reg.data_format_total);
 	if(adxl345_status == ADXL345_ERR)
 	{
@@ -438,6 +439,7 @@ adxl345_status_t adxl345_init(void)
 	{
 		return ADXL345_ERR;
 	}
+    
 	//Config interrupt pin
 	//interrupt_reg_map.interrupt_reg_bits.data_ready = ADXL345IntMapPin1;
     //adxl345_status = adxl345_write_one_byte(ADXL345IntMapAdd,interrupt_map_reg.interrupt_reg_total);
@@ -453,14 +455,14 @@ adxl345_status_t adxl345_init(void)
 	//	return ADXL345_ERR;
 	//}
 	
-	power_ctl_reg.power_ctl_bits.measure = ADXL345StartMeasure;
+	power_ctl_reg.power_ctl_bits.measure = ADXL345StartMeasure;//开启测量模式，上电后处于standby模式，此时读出的都是0
 	adxl345_status = adxl345_write_one_byte(ADXL345PowerCTLAdd,power_ctl_reg.power_ctl_total);
 	if(adxl345_status == ADXL345_ERR)
 	{
 		return ADXL345_ERR;
 	}
 	
-	return adxl345_status;*/
+	return adxl345_status;
 }
 
 adxl345_result_t getAcceleration(void)

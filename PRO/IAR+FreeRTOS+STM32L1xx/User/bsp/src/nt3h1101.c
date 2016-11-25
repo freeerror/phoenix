@@ -47,9 +47,23 @@ void nt3h1101_power_ctl_init(void)
 
 void nt3h1101_power_on(void)
 {
-	GPIO_PORT_NFCPWR->BSRRL = GPIO_PIN_NFCPWR;
-	nt3h1101_read_one_block(0x00);//上电以后第一次i2c读写操作的结果是不正确的，所以先进行一次读，以屏蔽第一次的错误结果
-        nt3h1101_write_reg(REGA_NC_REG,REGA_FD_MASK,REG_DATA_FD);//配置FD中断引脚
+    nt3h1101_result_t nt3h1101_result;
+    uint8_t retry = 0;
+
+	GPIO_PORT_NFCPWR->BSRRL = GPIO_PIN_NFCPWR; //上电
+
+    do
+    {
+        nt3h1101_result = nt3h1101_read_one_block(0x00);
+        retry++;
+        if(retry > 10)//多次尝试失败，则退出
+        {
+            printf("NT3H1101 ERROR!\r\n");
+            break;
+        }
+    }while(nt3h1101_result.nt3h1101_status == NT3H1101_ERR);//等待NT3H1101成功回应
+    
+    nt3h1101_write_reg(REGA_NC_REG,REGA_FD_MASK,REG_DATA_FD);//配置FD中断引脚
 }
 
 void nt3h1101_power_off(void)
