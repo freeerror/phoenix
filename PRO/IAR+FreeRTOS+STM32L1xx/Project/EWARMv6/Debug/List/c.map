@@ -1,76 +1,76 @@
 ###############################################################################
 #
-# IAR ELF Linker V7.50.2.10312/W32 for ARM                25/Nov/2016  16:05:26
+# IAR ELF Linker V7.50.2.10312/W32 for ARM                26/Nov/2016  12:06:38
 # Copyright 2007-2015 IAR Systems AB.
 #
 #    Output file  =  
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Exe\c.out
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Exe\c.out
 #    Map file     =  
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\List\c.map
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\List\c.map
 #    Command line =  
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\adxl345.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\beep.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\bsp.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\croutine.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\event_groups.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_acc_sensor.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_beep.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_brightness.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_led.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_nfc.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_platform.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_tempRh.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\heap_4.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\I2c.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\list.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\main.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\misc.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\nt3h1101.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\opt3001.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\platform.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\port.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\portasm.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\queue.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\SHT20.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\startup_stm32l1xx_mdp.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_adc.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_aes.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_aes_util.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_comp.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_crc.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_dac.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_dbgmcu.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_dma.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_exti.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_flash.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_flash_ramfunc.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_fsmc.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_gpio.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_i2c.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_it.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_iwdg.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_lcd.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_opamp.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_pwr.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_rcc.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_rtc.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_sdio.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_spi.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_syscfg.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_tim.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_usart.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_wwdg.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\system_stm32l1xx.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\tasks.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\timers.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\usart.o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\WS2812.o
-#        -o
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Exe\c.out
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\adxl345.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\beep.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\bsp.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\croutine.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\event_groups.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_acc_sensor.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_beep.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_brightness.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_led.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_nfc.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_platform.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\hal_tempRh.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\heap_4.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\I2c.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\list.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\main.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\misc.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\nfc_module.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\nt3h1101.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\opt3001.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\platform.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\port.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\portasm.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\queue.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\SHT20.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\startup_stm32l1xx_mdp.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_adc.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_aes.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_aes_util.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_comp.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_crc.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_dac.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_dbgmcu.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_dma.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_exti.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_flash.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_flash_ramfunc.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_fsmc.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_gpio.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_i2c.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_it.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_iwdg.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_lcd.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_opamp.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_pwr.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_rcc.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_rtc.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_sdio.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_spi.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_syscfg.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_tim.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_usart.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\stm32l1xx_wwdg.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\system_stm32l1xx.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\tasks.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\timers.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\usart.o
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj\WS2812.o
+#        -o E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Exe\c.out
 #        --map
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\List\c.map
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\List\c.map
 #        --config
-#        F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\SU_driver_IAR.icf
+#        E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\SU_driver_IAR.icf
 #        --semihosting --entry __iar_program_start --vfe
 #
 ###############################################################################
@@ -406,7 +406,7 @@ Copy/lz77 (__iar_lz77_init_single3)
 
     Module                   ro code  ro data  rw data
     ------                   -------  -------  -------
-F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj: [1]
+E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj: [1]
     I2c.o                        352
     SHT20.o                    1 642                 4
     WS2812.o                     764       53      480
@@ -884,7 +884,7 @@ xTickCount              0x2000696c     0x4  Data  Lc  tasks.o [1]
 xYieldPending           0x2000697c     0x4  Data  Lc  tasks.o [1]
 
 
-[1] = F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj
+[1] = E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Obj
 [2] = command line
 [3] = dl7M_tlf.a
 [4] = m7M_tl.a

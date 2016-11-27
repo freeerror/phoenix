@@ -40,13 +40,13 @@ typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 #include <string.h>
 #include <stdlib.h>
 
-#ifndef TRUE
+/*#ifndef TRUE
 	#define TRUE  1
 #endif
 
 #ifndef FALSE
 	#define FALSE 0
-#endif
+#endif*/
 
 #include "i2c.h"
 #include "beep.h"
