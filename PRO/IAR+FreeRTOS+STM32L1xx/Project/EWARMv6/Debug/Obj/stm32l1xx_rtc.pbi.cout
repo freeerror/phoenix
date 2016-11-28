@@ -2,8 +2,6 @@
 -std=c99
 -ferror-limit=100
 -I
-F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\..\..\User\bsp\inc
--I
 F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\..\..\User\bsp
 -I
 F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\..\..\User\app\inc
@@ -20,11 +18,11 @@ F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\..\..\FreeRTOS\portable\IA
 -I
 F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\..\..\User
 -I
+F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\..\..\User\bsp\inc
+-I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\inc\c
--I
-F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\User\bsp\inc
 -I
 F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\User\bsp
 -I
@@ -41,6 +39,8 @@ F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\FreeRTOS\include
 F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\FreeRTOS\portable\IAR\ARM_CM3
 -I
 F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\User
+-I
+F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\User\bsp\inc
 -DUSE_STDPERIPH_DRIVER=1
 -DSTM32L1XX_MDP=1
 -D__CHAR_BITS__=8

@@ -185,6 +185,8 @@ static void vTaskStart(void *pvParameters)
   int color;
   int sequence;
   int brightness;
+  nfc_info_flag_t nfc_info_flag;
+  nfc_data_info_t nfc_data_info;
 
 	printf("新版箱押卫士硬件测试!\r\n");
 	printf("1. 蜂鸣器测试。\r\n");
@@ -200,6 +202,7 @@ static void vTaskStart(void *pvParameters)
     printf("B. 加速度传感器测试。\r\n");
     printf("C. 获取NFC ID。\r\n");
     printf("D. RGB LED灯测试。\r\n");
+    printf("E. NFC读写测试。\r\n");
     while(1)
     {
 		scanf("%c",&step);
@@ -330,6 +333,20 @@ static void vTaskStart(void *pvParameters)
 
                 hal_set_led((ws2812_position_t)(position),(ws2812_color_t)(color),(uint8_t)(sequence),(uint8_t)(brightness));
 
+                break;
+
+            case 0x45:
+                hal_nfc_init();
+                hal_nfc_power_on();                
+                //nfc_clear_info_flag(NFC_UNBIND_TYPE);
+                nfc_read_info_flag(&nfc_info_flag);
+                if(nfc_info_flag.sub_box_number == 0x01)
+                {
+                    nfc_read_info(&nfc_data_info,NFC_SUB_BOX_NUMBER_TYPE);
+                }
+                
+                vTaskDelay(10 / portTICK_RATE_MS);//NFC断电前要有一段时间保证i2c读写操作可以完成
+                hal_nfc_power_off();                
                 break;
                 
 			default:

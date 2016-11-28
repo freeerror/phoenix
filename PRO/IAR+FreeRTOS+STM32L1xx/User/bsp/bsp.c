@@ -51,7 +51,7 @@ void bsp_Init(void)
 	hal_beep_init();
     i2c1_init();
     WS2812_Timer_Init();
-    adxl345_init();
+    hal_acc_init();
 }
 
 /*

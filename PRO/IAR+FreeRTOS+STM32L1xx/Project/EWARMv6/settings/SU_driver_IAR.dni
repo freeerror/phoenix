@@ -13,7 +13,7 @@ CStepIntDis=_ 0
 stlinkserialNo=E04058CD
 stlinkfoundProbes=
 [DebugChecksum]
-Checksum=1563246850
+Checksum=-977808327
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -127,7 +127,8 @@ mode=0
 Bp0=_ 1 "EMUL_DATA" "sht20_read_temp" 0 0 0 0 4294967295
 Bp1=_ 0 "EMUL_DATA" "DMA_LED_DATA" 0 0 0 0 4294967295
 Bp2=_ 1 "EMUL_DATA_LOG" "bsp_Init" 0 0
-Count=3
+Bp3=_ 1 "EMUL_CODE" "{$PROJ_DIR$\main.c}.345.21" 0 0 1 "" 0 "" 0
+Count=4
 [Aliases]
 Count=0
 SuppressDialog=0

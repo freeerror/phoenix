@@ -315,7 +315,6 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\User\bsp\inc</state>
           <state>$PROJ_DIR$\..\..\User\bsp</state>
           <state>$PROJ_DIR$\..\..\User\app\inc</state>
           <state>$PROJ_DIR$\..\..\Libraries\STM32L1xx_StdPeriph_Driver\inc</state>
@@ -324,6 +323,7 @@
           <state>$PROJ_DIR$\..\..\FreeRTOS\include</state>
           <state>$PROJ_DIR$\..\..\FreeRTOS\portable\IAR\ARM_CM3</state>
           <state>$PROJ_DIR$\..\..\User</state>
+          <state>$PROJ_DIR$\..\..\User\bsp\inc</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>

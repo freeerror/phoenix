@@ -40,3 +40,8 @@ adxl345_int_result_t hal_act_freefall_int_process(void)
   
   return adxl345_int_result;  
 }
+
+void hal_acc_init(void)
+{
+    adxl345_init();
+}
