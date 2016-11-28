@@ -84,6 +84,9 @@ typedef struct
   adxl345_result_t adxl345_result;
 }adxl345_int_result_t;
 
+
+adxl345_status_t adxl345_init(void);
+
 void adxl345_low_level_init(void);
 
 adxl345_result_t getAcceleration(void);

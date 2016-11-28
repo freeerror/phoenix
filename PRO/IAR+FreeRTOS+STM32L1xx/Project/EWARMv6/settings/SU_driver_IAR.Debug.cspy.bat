@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\settings\SU_driver_IAR.Debug.general.xcl" --backend -f "F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\settings\SU_driver_IAR.Debug.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\settings\SU_driver_IAR.Debug.general.xcl" --backend -f "E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\settings\SU_driver_IAR.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\settings\SU_driver_IAR.Debug.general.xcl" "--debug_file=%~1" --backend -f "F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\settings\SU_driver_IAR.Debug.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\settings\SU_driver_IAR.Debug.general.xcl" "--debug_file=%~1" --backend -f "E:\there\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\settings\SU_driver_IAR.Debug.driver.xcl" 
 
 @echo off 
 :end
