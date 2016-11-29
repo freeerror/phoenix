@@ -338,12 +338,32 @@ static void vTaskStart(void *pvParameters)
             case 0x45:
                 hal_nfc_init();
                 hal_nfc_power_on();                
-                //nfc_clear_info_flag(NFC_UNBIND_TYPE);
+                printf("读取nfc索引。\r\n");
                 nfc_read_info_flag(&nfc_info_flag);
-                if(nfc_info_flag.sub_box_number == 0x01)
+                printf("0x%X 0x%X 0x%X 0x%X 0x%X 0x%X 0x%X\r\n",nfc_info_flag.out_package_bar_code,\
+                                                                nfc_info_flag.box_number,\
+                                                                nfc_info_flag.unbind,\
+                                                                nfc_info_flag.sub_box_number,\
+                                                                nfc_info_flag.read_dev_log,\
+                                                                nfc_info_flag.profile_id,\
+                                                                nfc_info_flag.user_num);
+                printf("清除nfc索引。\r\n");            
+                nfc_clear_info_flag(NFC_OUT_PACKAGE_BAR_CODE_TYPE);
+                nfc_clear_info_flag(NFC_BOX_NUMBER_TYPE);
+                nfc_clear_info_flag(NFC_UNBIND_TYPE);
+                nfc_clear_info_flag(NFC_SUB_BOX_NUMBER_TYPE);
+                nfc_clear_info_flag(NFC_READ_DEV_LOG_TYPE);
+                nfc_clear_info_flag(NFC_PROFILE_ID_TYPE);
+                nfc_clear_info_flag(NFC_USER_NUMBER_TYPE);
+
+                printf("读取NFC信息。\r\n");
+                nfc_read_info(&nfc_data_info,NFC_OUT_PACKAGE_BAR_CODE_TYPE);
+                printf("NFC OUT PACKAGE BAR CODE = ");
+                for(i = 0;i < SUB_BOX_NUMBER_VALUE_LEN;i++)
                 {
-                    nfc_read_info(&nfc_data_info,NFC_SUB_BOX_NUMBER_TYPE);
+                     printf("0x%X  ",nfc_data_info.sub_box_number_value.sub_box_number[i]);
                 }
+                printf("\r\n");
                 
                 vTaskDelay(10 / portTICK_RATE_MS);//NFC断电前要有一段时间保证i2c读写操作可以完成
                 hal_nfc_power_off();                

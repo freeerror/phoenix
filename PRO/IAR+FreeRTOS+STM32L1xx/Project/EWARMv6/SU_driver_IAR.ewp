@@ -1930,6 +1930,9 @@
   <group>
     <name>BSP</name>
     <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\adc.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\adxl345.c</name>
     </file>
     <file>
@@ -1937,6 +1940,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\User\bsp\bsp.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\eeprom.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\I2c.c</name>

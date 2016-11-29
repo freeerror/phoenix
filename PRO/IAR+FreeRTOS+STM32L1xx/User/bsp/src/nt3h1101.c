@@ -246,7 +246,7 @@ nt3h1101_id_t nt3h1101_get_id(void)
 	nt3h1101_result_t nt3h1101_result;
 	nt3h1101_id_t nt3h1101_id;
 
-	nt3h1101_result = nt3h1101_read_one_block(0x00);
+	nt3h1101_result = hal_nfc_read_one_block(0x00);
 	
 	nt3h1101_id.nt3h1101_status = nt3h1101_result.nt3h1101_status;
 	

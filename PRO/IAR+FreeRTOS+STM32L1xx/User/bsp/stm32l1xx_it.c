@@ -29,7 +29,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l1xx_it.h"
-#include "main.h"
+//#include "main.h"
 
 /** @addtogroup Template_Project
   * @{
