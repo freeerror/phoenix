@@ -1,6 +1,6 @@
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armproc.dll" 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armjlink2.dll" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armstlink2.dll" 
 
 "F:\phoenix\PRO\IAR+FreeRTOS+STM32L1xx\Project\EWARMv6\Debug\Exe\c.out" 
 

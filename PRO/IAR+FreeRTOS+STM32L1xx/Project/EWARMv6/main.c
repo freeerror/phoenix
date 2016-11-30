@@ -187,6 +187,7 @@ static void vTaskStart(void *pvParameters)
   int brightness;
   nfc_info_flag_t nfc_info_flag;
   nfc_data_info_t nfc_data_info;
+  float *power_voltage;
 
 	printf("新版箱押卫士硬件测试!\r\n");
 	printf("1. 蜂鸣器测试。\r\n");
@@ -203,6 +204,7 @@ static void vTaskStart(void *pvParameters)
     printf("C. 获取NFC ID。\r\n");
     printf("D. RGB LED灯测试。\r\n");
     printf("E. NFC读写测试。\r\n");
+    printf("F. ADC转换测试。\r\n");
     while(1)
     {
 		scanf("%c",&step);
@@ -367,6 +369,11 @@ static void vTaskStart(void *pvParameters)
                 
                 vTaskDelay(10 / portTICK_RATE_MS);//NFC断电前要有一段时间保证i2c读写操作可以完成
                 hal_nfc_power_off();                
+                break;
+
+            case 0x46:
+                power_adc_conversion(power_voltage);
+                printf("POWER VOLTAGE = %.2f\r\n",*power_voltage);
                 break;
                 
 			default:
