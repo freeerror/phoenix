@@ -25,6 +25,7 @@ typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 #include "usart.h"
 #include "eeprom.h"
 #include "adc.h"
+#include "dismantle.h"
 #include "hal_beep.h"
 #include "hal_platform.h"
 #include "hal_brightness.h"
@@ -33,6 +34,8 @@ typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 #include "hal_nfc.h"
 #include "hal_led.h"
 #include "nfc_module.h"
+#include "hal_energy.h"
+#include "hal_dismantle.h"
 
 void bsp_Init(void);
 

@@ -187,7 +187,7 @@ static void vTaskStart(void *pvParameters)
   int brightness;
   nfc_info_flag_t nfc_info_flag;
   nfc_data_info_t nfc_data_info;
-  float *power_voltage;
+  float power_voltage;
 
 	printf("新版箱押卫士硬件测试!\r\n");
 	printf("1. 蜂鸣器测试。\r\n");
@@ -270,7 +270,7 @@ static void vTaskStart(void *pvParameters)
                 }
                 break;
 
-            case 0x41:
+            case 0x41: //A
                 sht20_result = hal_get_tempRH();
                 if(sht20_result.sht20_status == SHT20_OK)
                 {
@@ -282,7 +282,7 @@ static void vTaskStart(void *pvParameters)
                 }
                 break;
 
-            case 0x42:
+            case 0x42: //B
                 adxl345_result = hal_getAcceleration();
                 if(adxl345_result.adxl345_status == ADXL345_OK)
                 {
@@ -294,9 +294,7 @@ static void vTaskStart(void *pvParameters)
                 }
                 break;
 
-            case 0x43:
-                hal_nfc_init();
-                hal_nfc_power_on();
+            case 0x43: //C
                 nt3h1101_id = hal_nfc_get_id();
                 if(nt3h1101_id.nt3h1101_status == NT3H1101_OK)
                 {
@@ -311,10 +309,9 @@ static void vTaskStart(void *pvParameters)
                 {
                     printf("NT3H1101 ERROR!\r\n");
                 }
-                hal_nfc_power_off();
                 break;
 
-            case 0x44:
+            case 0x44: //D
                 printf("请输入position参数,以回车结束!\r\n");
                 printf("0 = right_right,1 = right_left,2 = left_right,3 = left_left,4 = bottom_left,5 = top_left,6 = top_right,7 = bottom_right\r\n");
                 position = input_hex_to_int();
@@ -337,9 +334,7 @@ static void vTaskStart(void *pvParameters)
 
                 break;
 
-            case 0x45:
-                hal_nfc_init();
-                hal_nfc_power_on();                
+            case 0x45: //E              
                 printf("读取nfc索引。\r\n");
                 nfc_read_info_flag(&nfc_info_flag);
                 printf("0x%X 0x%X 0x%X 0x%X 0x%X 0x%X 0x%X\r\n",nfc_info_flag.out_package_bar_code,\
@@ -366,14 +361,12 @@ static void vTaskStart(void *pvParameters)
                      printf("0x%X  ",nfc_data_info.sub_box_number_value.sub_box_number[i]);
                 }
                 printf("\r\n");
-                
-                vTaskDelay(10 / portTICK_RATE_MS);//NFC断电前要有一段时间保证i2c读写操作可以完成
-                hal_nfc_power_off();                
+                             
                 break;
 
-            case 0x46:
-                power_adc_conversion(power_voltage);
-                printf("POWER VOLTAGE = %.2f\r\n",*power_voltage);
+            case 0x46: //F
+                hal_get_power_voltage(&power_voltage);
+                printf("POWER VOLTAGE = %.2f\r\n",power_voltage);
                 break;
                 
 			default:

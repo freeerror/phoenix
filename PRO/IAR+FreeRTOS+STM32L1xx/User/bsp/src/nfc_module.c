@@ -11,10 +11,9 @@
 bool nfc_read_info_flag(nfc_info_flag_t *nfc_info_flag)
 {
     nt3h1101_result_t result;
-    //nfc_info_flag_t *nfc_info_flag_temp;
-    
+
     result = hal_nfc_read_one_block(NFC_INFO_FLAG_ADDR);
-    
+
     if(result.nt3h1101_status == NT3H1101_OK)
     {
         nfc_info_flag->out_package_bar_code =   (result.block_bytes[0] == 0x01) ? 1:0;
@@ -29,8 +28,6 @@ bool nfc_read_info_flag(nfc_info_flag_t *nfc_info_flag)
     {
         return FALSE;
     }
-
-    //nfc_info_flag = nfc_info_flag_temp;
     
     return TRUE;
 }

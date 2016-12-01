@@ -29,7 +29,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l1xx_it.h"
-//#include "main.h"
+#include "includes.h"
 
 /** @addtogroup Template_Project
   * @{
@@ -124,6 +124,24 @@ void UsageFault_Handler(void)
 void DebugMon_Handler(void)
 {
 }
+/*
+*********************************************************************************************************
+*	函 数 名:void EXTI4_IRQHandler(void)
+*	功能说明:防拆按键中断服务程序
+*	形    参:无  
+*	返 回 值:无 
+*********************************************************************************************************
+*/
+void EXTI4_IRQHandler(void)
+{
+    if(EXTI_GetITStatus(EXTI_Line4) != RESET)
+    {
+        vTaskDelay(20 / portTICK_RATE_MS); //延时去抖
+        
+        EXTI_ClearITPendingBit(EXTI_Line4);
+    }
+}
+
 
 /**
   * @brief  This function handles PendSVC exception.

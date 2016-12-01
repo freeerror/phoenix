@@ -414,8 +414,7 @@ adxl345_status_t adxl345_init(void)
     do
     {
         adxl345_reg_devid = adxl345_read_one_byte(ADXL345DeviceIDAdd);//读取adxl345的device id
-        retry++;
-        if(retry > 10)//多次尝试没有回应则退出循环，返回error
+        if(++retry > 10)//多次尝试没有回应则退出循环，返回error
         {
             return ADXL345_ERR;
         }

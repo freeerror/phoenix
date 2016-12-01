@@ -55,8 +55,8 @@ void nt3h1101_power_on(void)
     do
     {
         nt3h1101_result = nt3h1101_read_one_block(0x00);
-        retry++;
-        if(retry > 10)//多次尝试失败，则退出
+        
+        if(++retry > 10)//多次尝试失败，则退出
         {
             printf("NT3H1101 ERROR!\r\n");
             break;
