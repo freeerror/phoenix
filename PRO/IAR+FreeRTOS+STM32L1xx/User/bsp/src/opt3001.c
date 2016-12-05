@@ -1,5 +1,14 @@
 #include "includes.h"
 
+#define RCC_OPT3001_INT         RCC_AHBPeriph_GPIOB
+#define RCC_OPT3001_INT_PORT    GPIOB
+#define RCC_OPT3001_INT_PIN     GPIO_Pin_1
+#define OPT3001_EXTI_PortSource EXTI_PortSourceGPIOB
+#define OPT3001_EXTI_PinSource  EXTI_PinSource1
+#define OPT3001_EXTI_LINE       EXTI_Line1
+#define OPT3001_TRIG_EDGE       EXTI_Trigger_Falling
+#define OPT3001_EXTI_IRQn       EXTI1_IRQn 
+
 static uint32_t opt3001_timeout;
 uint8_t LowHighLimitTrigFlag;
 
@@ -211,21 +220,21 @@ void opt3001_int_init(void)//opt3001÷–∂œ≥ı ºªØ
 	EXTI_InitTypeDef EXTI_InitStruct;
 	NVIC_InitTypeDef NVIC_InitStruct;
 	
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB,ENABLE);
+	RCC_AHBPeriphClockCmd(RCC_OPT3001_INT,ENABLE);
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1;
-	GPIO_Init(GPIOB,&GPIO_InitStruct);
+	GPIO_InitStruct.GPIO_Pin = RCC_OPT3001_INT_PIN;
+	GPIO_Init(RCC_OPT3001_INT_PORT,&GPIO_InitStruct);
 	
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG,ENABLE);
-	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB,EXTI_PinSource1);
+	SYSCFG_EXTILineConfig(OPT3001_EXTI_PortSource,OPT3001_EXTI_PinSource);
 	
-	EXTI_InitStruct.EXTI_Line = EXTI_Line1;
+	EXTI_InitStruct.EXTI_Line = OPT3001_EXTI_LINE;
 	EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-	EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+	EXTI_InitStruct.EXTI_Trigger = OPT3001_TRIG_EDGE;
 	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStruct);
 	
-	NVIC_InitStruct.NVIC_IRQChannel = EXTI1_IRQn;
+	NVIC_InitStruct.NVIC_IRQChannel = OPT3001_EXTI_IRQn;
 	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 5;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0;
 	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;

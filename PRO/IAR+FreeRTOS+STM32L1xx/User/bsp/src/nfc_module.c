@@ -165,3 +165,45 @@ bool nfc_clear_info_flag(nfc_app_type_t nfc_app_type)
 	}
 }
 
+bool nfc_write_status(uint32_t stat)
+{
+    uint8_t block_bytes[NT3H1101OneBlockBytes];
+
+    block_bytes[0] = (uint8_t)stat;
+    block_bytes[1] = (uint8_t)(stat >> 8);
+    block_bytes[2] = (uint8_t)(stat >> 16);
+    block_bytes[3] = (uint8_t)(stat >> 24);
+
+    memset(block_bytes + 4,0x00,NT3H1101OneBlockBytes - 4);
+
+    if(NT3H1101_OK == hal_nfc_write_one_block(NFC_WRITE_STATUS_ADDR,block_bytes))
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+bool nfc_read_status(uint32_t *result)
+{
+    nt3h1101_result_t nt3h1101_result;
+
+    nt3h1101_result = hal_nfc_read_one_block(NFC_WRITE_STATUS_ADDR);
+
+    if(nt3h1101_result.nt3h1101_status == NT3H1101_OK)
+    {
+        *result = (uint32_t)(nt3h1101_result.block_bytes[3] << 24) + \
+                  (uint32_t)(nt3h1101_result.block_bytes[2] << 16) + \
+                  (uint32_t)(nt3h1101_result.block_bytes[1] << 8 ) + \
+                  nt3h1101_result.block_bytes[0];
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+

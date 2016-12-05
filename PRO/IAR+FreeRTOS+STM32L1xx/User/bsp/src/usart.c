@@ -21,6 +21,7 @@
 #endif
 
 #if UART1_FIFO_EN == 1
+    
 	#define RCC_USART1        RCC_APB2Periph_USART1
 	#define RCC_USART1_PORT   RCC_AHBPeriph_GPIOA
 	#define GPIO_PORT_USART1  GPIOA
@@ -28,37 +29,59 @@
 	#define GPIO_PIN_RX1      GPIO_Pin_10
 	#define GPIO_PinSourceTX1 GPIO_PinSource9
 	#define GPIO_PinSourceRX1 GPIO_PinSource10
+    
 #endif
 
 #if UART2_FIFO_EN == 1
-	#define RCC_USART2        RCC_APB1Periph_USART2
-	#define RCC_USART2_PORT   RCC_AHBPeriph_GPIOA
-	#define GPIO_PORT_USART2  GPIOA
-	#define GPIO_PIN_TX2      GPIO_Pin_2
-	#define GPIO_PIN_RX2      GPIO_Pin_3
-	#define GPIO_PinSourceTX2 GPIO_PinSource2
-	#define GPIO_PinSourceRX2 GPIO_PinSource3
+
+    #ifdef DEBUG_SYSTEM
+    
+    	#define RCC_USART2        RCC_APB1Periph_USART2
+    	#define RCC_USART2_PORT   RCC_AHBPeriph_GPIOA
+    	#define GPIO_PORT_USART2  GPIOA
+    	#define GPIO_PIN_TX2      GPIO_Pin_2
+    	#define GPIO_PIN_RX2      GPIO_Pin_3
+    	#define GPIO_PinSourceTX2 GPIO_PinSource2
+    	#define GPIO_PinSourceRX2 GPIO_PinSource3
+
+    #else
+
+      	#define RCC_USART2        RCC_APB1Periph_USART2
+    	#define RCC_USART2_PORT   RCC_AHBPeriph_GPIOD
+    	#define GPIO_PORT_USART2  GPIOD
+    	#define GPIO_PIN_TX2      GPIO_Pin_5
+    	#define GPIO_PIN_RX2      GPIO_Pin_6
+    	#define GPIO_PinSourceTX2 GPIO_PinSource5
+    	#define GPIO_PinSourceRX2 GPIO_PinSource6
+    
+    #endif
+    
 #endif
 
 #if UART3_FIFO_EN == 1
 
-  #if 0
-	#define RCC_USART3        RCC_APB1Periph_USART3
-	#define RCC_USART3_PORT   RCC_AHBPeriph_GPIOD
-	#define GPIO_PORT_USART3  GPIOD
-	#define GPIO_PIN_TX3      GPIO_Pin_8
-	#define GPIO_PIN_RX3      GPIO_Pin_9
-	#define GPIO_PinSourceTX3 GPIO_PinSource8
-	#define GPIO_PinSourceRX3 GPIO_PinSource9
-  #else
-  #define RCC_USART3        RCC_APB1Periph_USART3
-	#define RCC_USART3_PORT   RCC_AHBPeriph_GPIOB
-	#define GPIO_PORT_USART3  GPIOB
-	#define GPIO_PIN_TX3      GPIO_Pin_10
-	#define GPIO_PIN_RX3      GPIO_Pin_11
-	#define GPIO_PinSourceTX3 GPIO_PinSource10
-	#define GPIO_PinSourceRX3 GPIO_PinSource11
-  #endif
+    #ifdef DEBUG_SYSTEM
+     
+        #define RCC_USART3        RCC_APB1Periph_USART3
+	    #define RCC_USART3_PORT   RCC_AHBPeriph_GPIOB
+	    #define GPIO_PORT_USART3  GPIOB
+	    #define GPIO_PIN_TX3      GPIO_Pin_10
+	    #define GPIO_PIN_RX3      GPIO_Pin_11
+	    #define GPIO_PinSourceTX3 GPIO_PinSource10
+	    #define GPIO_PinSourceRX3 GPIO_PinSource11
+
+    #else    
+    
+        #define RCC_USART3        RCC_APB1Periph_USART3
+        #define RCC_USART3_PORT   RCC_AHBPeriph_GPIOD
+        #define GPIO_PORT_USART3  GPIOD
+        #define GPIO_PIN_TX3      GPIO_Pin_8
+        #define GPIO_PIN_RX3      GPIO_Pin_9
+        #define GPIO_PinSourceTX3 GPIO_PinSource8
+        #define GPIO_PinSourceRX3 GPIO_PinSource9
+
+    #endif    
+
   
 #endif
 
@@ -81,7 +104,7 @@
 #if UART3_FIFO_EN == 1
 
   #define UART3_TX_DMA_Channel  DMA1_Channel2
-  #define UART3_TX_DMA_Flag  DMA1_FLAG_TC2
+  #define UART3_TX_DMA_Flag     DMA1_FLAG_TC2
   #define UART3_DR_ADDRESS      0x40004804
 	
 #endif

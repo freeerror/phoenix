@@ -5,22 +5,24 @@
 											函数声明
 **********************************************************************************************************
 */
-static void vTaskTaskUserIF(void *pvParameters);
+static void AppTaskCreate (void);
+static void vTaskStart(void *pvParameters);
+static void app_task_init(void);
+static void int_alarm_handler(void);
+#if 0
 static void vTaskLED(void *pvParameters);
 static void vTaskMsgPro(void *pvParameters);
-static void vTaskStart(void *pvParameters);
-static void AppTaskCreate (void);
-
+static void vTaskTaskUserIF(void *pvParameters);
+#endif
 /*
 **********************************************************************************************************
 											变量声明
 **********************************************************************************************************
 */
-static TaskHandle_t xHandleTaskUserIF = NULL;
-static TaskHandle_t xHandleTaskLED = NULL;
-static TaskHandle_t xHandleTaskMsgPro = NULL;
+//static TaskHandle_t xHandleTaskUserIF = NULL;
+//static TaskHandle_t xHandleTaskLED = NULL;
+//static TaskHandle_t xHandleTaskMsgPro = NULL;
 static TaskHandle_t xHandleTaskStart = NULL;
-
 /*
 *********************************************************************************************************
 *	函 数 名: main
@@ -33,7 +35,8 @@ int main(void)
 {
     /* 硬件初始化 */
     bsp_Init(); 
-    
+    /* 创建队列 */
+    app_task_init();
     /* 创建任务 */
     AppTaskCreate();
 	
@@ -48,6 +51,24 @@ int main(void)
     while(1);
 }
 
+/*
+*********************************************************************************************************
+*	函 数 名: void app_task_init(void)
+*	功能说明: 创建队列	
+*	形    参: 无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void app_task_init(void)
+{
+    int_alarm_queue = xQueueCreate(INT_ALARM_LEN,INT_ALARM_SIZE);
+
+    if(int_alarm_queue == 0)
+    {
+        printf("Creat app_cmd_queue error!\r\n");
+    }
+}
+#if 0
 /*
 *********************************************************************************************************
 *	函 数 名: vTaskTaskUserIF
@@ -74,6 +95,7 @@ static void vTaskTaskUserIF(void *pvParameters)
 *   优 先 级: 2  
 *********************************************************************************************************
 */
+
 static void vTaskLED(void *pvParameters)
 {
     while(1)
@@ -98,6 +120,7 @@ static void vTaskMsgPro(void *pvParameters)
 
     }
 }
+#endif
 
 int input_hex_to_int(void)
 {
@@ -169,28 +192,31 @@ int input_hex_to_int(void)
 */
 static void vTaskStart(void *pvParameters)
 {
-  static char step;
-  uint8_t i;
-  uint32_t device_id;
-  uint32_t device_revision;
-  uint32_t flash_size;
-  uint8_t unique_id[12];
-  uint8_t boot_index;
-  uint32_t version;
-  opt3001_result_t opt3001_result;
-  sht20_result_t sht20_result;
-  adxl345_result_t adxl345_result;
-  nt3h1101_id_t nt3h1101_id;
-  int position;
-  int color;
-  int sequence;
-  int brightness;
-  nfc_info_flag_t nfc_info_flag;
-  nfc_data_info_t nfc_data_info;
-  float power_voltage;
+    static char step;
+    static char int_step;
+    uint8_t i;
+    uint32_t device_id;
+    uint32_t device_revision;
+    uint32_t flash_size;
+    uint8_t unique_id[12];
+    uint8_t boot_index;
+    uint32_t version;
+    opt3001_result_t opt3001_result;
+    sht20_result_t sht20_result;
+    adxl345_result_t adxl345_result;
+    nt3h1101_id_t nt3h1101_id;
+    int position;
+    int color;
+    int sequence;
+    int brightness;
+    nfc_info_flag_t nfc_info_flag;
+    nfc_data_info_t nfc_data_info;
+    uint16_t power_voltage;
+    uint32_t nfc_write_status_value;
+    uint8_t eeprom_bytes[10];
 
-	printf("新版箱押卫士硬件测试!\r\n");
-	printf("1. 蜂鸣器测试。\r\n");
+    printf("新版箱押卫士硬件测试!\r\n");
+    printf("1. 蜂鸣器测试。\r\n");
     printf("2. 系统复位测试。\r\n");
     printf("3. 获取MCU的Device ID。\r\n");
     printf("4. 获取MCU的Revision ID。\r\n");
@@ -205,6 +231,10 @@ static void vTaskStart(void *pvParameters)
     printf("D. RGB LED灯测试。\r\n");
     printf("E. NFC读写测试。\r\n");
     printf("F. ADC转换测试。\r\n");
+    printf("G. 防拆按键测试。\r\n");
+    printf("H. 中断检测测试时。\r\n");
+    printf("I. EEPROM读写测试。\r\n");
+    
     while(1)
     {
 		scanf("%c",&step);
@@ -361,18 +391,103 @@ static void vTaskStart(void *pvParameters)
                      printf("0x%X  ",nfc_data_info.sub_box_number_value.sub_box_number[i]);
                 }
                 printf("\r\n");
+
+                printf("写NFC_WRITE_STATUS.\r\n");
+                nfc_write_status(0x12345678);
+                printf("读NFC_WRITE_STATUS.\r\n");
+                nfc_read_status(&nfc_write_status_value);
+                printf("NFC_WRITE_STATUS = %d",nfc_write_status_value);
+                printf("\r\n");
                              
                 break;
 
             case 0x46: //F
                 hal_get_power_voltage(&power_voltage);
-                printf("POWER VOLTAGE = %.2f\r\n",power_voltage);
+                printf("POWER VOLTAGE = %d\r\n",power_voltage);
+                break;
+
+            case 0x47: //G
+
+                break;
+
+            case 0x48: //H
+                printf("a. 光敏中断检测!\r\n");
+                printf("b. 加速度中断检测!\r\n");
+                printf("c. nfc中断检测!\r\n");
+                scanf("%c",&int_step);
+                printf("%c\r\n",int_step);
+                switch(int_step)
+                {
+                    case 0x61://a
+                        hal_opt3001_reg_init();
+                        hal_opt3001_int_init();
+                        hal_opt3001_alarm_init(10,1000);
+                        break;
+
+                    default:
+                        break;
+               
+                }
+                int_alarm_handler();
+                break;
+
+            case 0x49: //I
+                memset(eeprom_bytes,0x40,sizeof(eeprom_bytes));
+                hal_eeprom_write_bytes(0,eeprom_bytes,sizeof(eeprom_bytes));
+                hal_eeprom_read_bytes(0,eeprom_bytes,sizeof(eeprom_bytes));
                 break;
                 
 			default:
 			    break;
 		}
 
+    }
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: static void int_alarm_handler(void)
+*	功能说明: 中断报警处理程序
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void int_alarm_handler(void)
+{
+
+    portBASE_TYPE xStatus;
+    int_alarm_t receive_value;
+    opt3001_result_t opt3001_result;
+
+    for(;;)
+    {
+        xStatus = xQueueReceive(int_alarm_queue,&receive_value,portMAX_DELAY);
+
+        if(xStatus == pdPASS)
+        {
+            switch(receive_value)
+            {
+                case acc_alarm:
+
+                    break;
+
+                case brightness_alarm:
+                    opt3001_result = hal_opt3001_int_get_lux();
+                    printf("Brightness = %.2f\r\n",opt3001_result.lux);
+                    break;
+
+                case nfc_alarm:
+
+                    break;
+
+                case fall_off_alarm:
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }
 
@@ -386,14 +501,14 @@ static void vTaskStart(void *pvParameters)
 */
 static void AppTaskCreate (void)
 {
-    xTaskCreate( vTaskTaskUserIF,   	/* 任务函数  */
-                 "vTaskUserIF",     	/* 任务名    */
-                 512,               	/* 任务栈大小，单位word，也就是4字节 */
-                 NULL,              	/* 任务参数  */
-                 1,                 	/* 任务优先级*/
-                 &xHandleTaskUserIF );  /* 任务句柄  */
+	xTaskCreate( vTaskStart,     		/* 任务函数  */
+                 "vTaskStart",   		/* 任务名    */
+                 512,            		/* 任务栈大小，单位word，也就是4字节 */
+                 NULL,           		/* 任务参数  */
+                 4,              		/* 任务优先级*/
+                 &xHandleTaskStart );   /* 任务句柄  */
 	
-	#if 1
+	#if 0
 	xTaskCreate( vTaskLED,    		/* 任务函数  */
                  "vTaskLED",  		/* 任务名    */
                  512,         		/* 任务栈大小，单位word，也就是4字节 */
@@ -407,14 +522,13 @@ static void AppTaskCreate (void)
                  NULL,           		/* 任务参数  */
                  3,               		/* 任务优先级*/
                  &xHandleTaskMsgPro );  /* 任务句柄  */
-	
-	
-	xTaskCreate( vTaskStart,     		/* 任务函数  */
-                 "vTaskStart",   		/* 任务名    */
-                 512,            		/* 任务栈大小，单位word，也就是4字节 */
-                 NULL,           		/* 任务参数  */
-                 4,              		/* 任务优先级*/
-                 &xHandleTaskStart );   /* 任务句柄  */
+
+    xTaskCreate( vTaskTaskUserIF,   	/* 任务函数  */
+             "vTaskUserIF",     	/* 任务名    */
+             512,               	/* 任务栈大小，单位word，也就是4字节 */
+             NULL,              	/* 任务参数  */
+             1,                 	/* 任务优先级*/
+             &xHandleTaskUserIF );  /* 任务句柄  */
 	#endif
 }
 

@@ -87,6 +87,17 @@ bool nfc_read_info(nfc_data_info_t *nfc_data_info,nfc_app_type_t nfc_app_type);
 
 bool nfc_clear_info_flag(nfc_app_type_t nfc_app_type);
 
+bool nfc_write_status(uint32_t stat);
+
+bool nfc_read_status(uint32_t *result);
+
+
+/* 
+NT3H1101 blocks
+block0:存储芯片系列号等
+block1 - block55:用户存储区 55 X 16 = 880bytes
+block56:这个block的前面8个byte为用户存储区，后面8个block存储lock bytes
+*/
 #define NFC_INFO_FLAG_ADDR             0x01
 #define NFC_OUT_PACKAGE_BAR_CODE_ADDR  0x02
 #define NFC_BOX_NUMBER_ADDR            0x03
@@ -95,6 +106,7 @@ bool nfc_clear_info_flag(nfc_app_type_t nfc_app_type);
 #define NFC_READ_DEV_LOG_ADDR          0x06
 #define NFC_PROFILE_ID_ADDR            0x07
 #define NFC_USER_NUMBER_ADDR           0X08
+#define NFC_WRITE_STATUS_ADDR          0x37//block55
 
 #endif
 

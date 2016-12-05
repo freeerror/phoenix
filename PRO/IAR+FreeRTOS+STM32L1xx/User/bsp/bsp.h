@@ -6,14 +6,31 @@
 #define ENABLE_INT()	__set_PRIMASK(0)	/* 使能全局中断 */
 #define DISABLE_INT()	__set_PRIMASK(1)	/* 禁止全局中断 */
 
+#define DEBUG_SYSTEM
+
+#define INT_ALARM_LEN   10
+#define INT_ALARM_SIZE  1
+extern  QueueHandle_t int_alarm_queue;
+
+
 typedef enum {FALSE = 0, TRUE = !FALSE} bool;
+
+typedef enum
+{
+    acc_alarm = 0x01,
+    brightness_alarm = 0x02,
+    nfc_alarm = 0x04,
+    fall_off_alarm = 0x08
+}int_alarm_t;
+
 
 
 #include "stm32l1xx.h"
+#include "stm32l1xx_it.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include "delay.h"
 #include "i2c.h"
 #include "beep.h"
 #include "platform.h"
@@ -36,6 +53,7 @@ typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 #include "nfc_module.h"
 #include "hal_energy.h"
 #include "hal_dismantle.h"
+#include "hal_eeprom.h"
 
 void bsp_Init(void);
 

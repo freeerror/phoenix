@@ -1942,6 +1942,9 @@
       <name>$PROJ_DIR$\..\..\User\bsp\bsp.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\delay.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\dismantle.c</name>
     </file>
     <file>
@@ -2042,6 +2045,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\hal_dismantle.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\User\bsp\src\hal_eeprom.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\User\bsp\src\hal_energy.c</name>

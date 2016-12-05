@@ -19,29 +19,33 @@
 //  |
 //LED102 <----------------------------------------- LED101 <--- Led_Data
 //bottom_left 
-#if 0
-typedef enum
-{
-	bottom_right = 0,
-	bottom_left,
-	top_left,
-	top_middle,
-	top_right
-          
-}ws2812_position_t;
+#ifdef DEBUG_SYSTEM
+
+    typedef enum
+    {
+        right_right = 0,
+        right_left = 1,
+        left_right = 2,
+        left_left = 3,
+        bottom_left = 4,
+        top_left = 5,
+        top_right = 6,
+        bottom_right = 7,
+        top_middle
+    }ws2812_position_t;
+
 #else
-typedef enum
-{
-    right_right = 0,
-    right_left = 1,
-    left_right = 2,
-    left_left = 3,
-    bottom_left = 4,
-    top_left = 5,
-    top_right = 6,
-    bottom_right = 7,
-    top_middle
-}ws2812_position_t;
+
+    typedef enum
+    {
+    	bottom_right = 0,
+    	bottom_left,
+    	top_left,
+    	top_middle,
+    	top_right
+              
+    }ws2812_position_t;
+
 #endif
 
 

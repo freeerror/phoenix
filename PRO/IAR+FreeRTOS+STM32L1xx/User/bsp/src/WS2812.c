@@ -22,46 +22,54 @@
 #define GPIO_PIN_LED5   GPIO_Pin_1
 
 //LED数据输出引脚
-#if 0
-#define RCC_LED_DATA         RCC_AHBPeriph_GPIOC
-#define GPIO_PORT_LED_DATA   GPIOC
-#define GPIO_PIN_LED_DATA    GPIO_Pin_8
-#define GPIO_SOURCE_LED_DATA GPIO_PinSource8
-#define GPIO_AF_LED_DATA     GPIO_AF_TIM3
+#ifdef DEBUG_SYSTEM
+
+    #define RCC_LED_DATA         RCC_AHBPeriph_GPIOA
+    #define GPIO_PORT_LED_DATA   GPIOA
+    #define GPIO_PIN_LED_DATA    GPIO_Pin_15
+    #define GPIO_SOURCE_LED_DATA GPIO_PinSource15
+    #define GPIO_AF_LED_DATA     GPIO_AF_TIM2
+
 #else
-#define RCC_LED_DATA         RCC_AHBPeriph_GPIOA
-#define GPIO_PORT_LED_DATA   GPIOA
-#define GPIO_PIN_LED_DATA    GPIO_Pin_15
-#define GPIO_SOURCE_LED_DATA GPIO_PinSource15
-#define GPIO_AF_LED_DATA     GPIO_AF_TIM2
+
+    #define RCC_LED_DATA         RCC_AHBPeriph_GPIOC
+    #define GPIO_PORT_LED_DATA   GPIOC
+    #define GPIO_PIN_LED_DATA    GPIO_Pin_8
+    #define GPIO_SOURCE_LED_DATA GPIO_PinSource8
+    #define GPIO_AF_LED_DATA     GPIO_AF_TIM3
+
 #endif
 
-#if 0
-//LED_DATA对应定时器时钟
-#define RCC_LED_TIMER        RCC_APB1Periph_TIM3
-//LED_DATA对应定时器
-#define TIMER_PORT_LED_DATA  TIM3
-//用于传输LED_DATA数据的DMA通道的时钟
-#define RCC_DMA_LED_DATA     RCC_AHBPeriph_DMA1
-//用于传输LED_DATA数据的DMA通道
-#define DMA_LED_DATA         DMA1_Channel2
-//LED_DATA对应的DMA通道源
-#define DMA_SOURCE_LED_DATA  TIM_DMA_CC3
-//LED_DATA对应的DMA通道传输完成标志
-#define DMA_TC_LED_DATA      DMA1_FLAG_TC2
+#ifdef DEBUG_SYSTEM
+
+    //LED_DATA对应定时器时钟
+    #define RCC_LED_TIMER        RCC_APB1Periph_TIM2
+    //LED_DATA对应定时器
+    #define TIMER_PORT_LED_DATA  TIM2
+    //用于传输LED_DATA数据的DMA通道的时钟
+    #define RCC_DMA_LED_DATA     RCC_AHBPeriph_DMA1
+    //用于传输LED_DATA数据的DMA通道
+    #define DMA_LED_DATA         DMA1_Channel5
+    //LED_DATA对应的DMA通道源
+    #define DMA_SOURCE_LED_DATA  TIM_DMA_CC1
+    //LED_DATA对应的DMA通道传输完成标志
+    #define DMA_TC_LED_DATA      DMA1_FLAG_TC5
+
 #else
-//LED_DATA对应定时器时钟
-#define RCC_LED_TIMER        RCC_APB1Periph_TIM2
-//LED_DATA对应定时器
-#define TIMER_PORT_LED_DATA  TIM2
-//用于传输LED_DATA数据的DMA通道的时钟
-#define RCC_DMA_LED_DATA     RCC_AHBPeriph_DMA1
-//用于传输LED_DATA数据的DMA通道
-#define DMA_LED_DATA         DMA1_Channel5
-//LED_DATA对应的DMA通道源
-#define DMA_SOURCE_LED_DATA  TIM_DMA_CC1
-//LED_DATA对应的DMA通道传输完成标志
-#define DMA_TC_LED_DATA      DMA1_FLAG_TC5
+
+    //LED_DATA对应定时器时钟
+    #define RCC_LED_TIMER        RCC_APB1Periph_TIM3
+    //LED_DATA对应定时器
+    #define TIMER_PORT_LED_DATA  TIM3
+    //用于传输LED_DATA数据的DMA通道的时钟
+    #define RCC_DMA_LED_DATA     RCC_AHBPeriph_DMA1
+    //用于传输LED_DATA数据的DMA通道
+    #define DMA_LED_DATA         DMA1_Channel2
+    //LED_DATA对应的DMA通道源
+    #define DMA_SOURCE_LED_DATA  TIM_DMA_CC3
+    //LED_DATA对应的DMA通道传输完成标志
+    #define DMA_TC_LED_DATA      DMA1_FLAG_TC2
+
 #endif
 
 

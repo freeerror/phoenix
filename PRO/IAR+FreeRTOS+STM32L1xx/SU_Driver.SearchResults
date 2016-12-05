@@ -1,0 +1,9 @@
+---- #if 0 Matches (8 in 5 files) ----
+Adc.c (user\bsp\src):#if 0
+Beep.c (user\bsp\src):#if 0
+Usart.c (user\bsp\src):  #if 0
+Usart.c (user\bsp\src):	#if 0
+Usart.c (user\bsp\src):#if 0	/* 将需要printf的字符通过串口中断FIFO发送出去，printf函数会立即返回 */
+WS2812.c (user\bsp\src):#if 0
+WS2812.c (user\bsp\src):#if 0
+WS2812.h (user\bsp\inc):#if 0

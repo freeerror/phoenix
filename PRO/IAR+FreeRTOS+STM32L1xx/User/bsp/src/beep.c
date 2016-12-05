@@ -1,16 +1,16 @@
 #include "includes.h"
 
-#if 0
+#ifdef DEBUG_SYSTEM
 
-#define RCC_BEEP       RCC_AHBPeriph_GPIOC
-#define GPIO_PORT_BEEP GPIOC
-#define GPIO_PIN_BEEP  GPIO_Pin_9
+    #define RCC_BEEP       RCC_AHBPeriph_GPIOA
+    #define GPIO_PORT_BEEP GPIOA
+    #define GPIO_PIN_BEEP  GPIO_Pin_4
 
 #else
 
-#define RCC_BEEP       RCC_AHBPeriph_GPIOA
-#define GPIO_PORT_BEEP GPIOA
-#define GPIO_PIN_BEEP  GPIO_Pin_4
+    #define RCC_BEEP       RCC_AHBPeriph_GPIOC
+    #define GPIO_PORT_BEEP GPIOC
+    #define GPIO_PIN_BEEP  GPIO_Pin_9
 
 #endif
 

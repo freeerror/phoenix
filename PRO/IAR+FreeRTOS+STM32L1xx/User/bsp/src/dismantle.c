@@ -1,18 +1,5 @@
 #include "includes.h"
 
-#define RCC_DISMANTLE        RCC_AHBPeriph_GPIOC
-#define GPIO_PORT_DISMANTLE  GPIOC
-#define GPIO_PIN_DISMANTLE   GPIO_Pin_4
-
-#define EXTI_LINE_DISMANTLE        EXTI_Line4
-#define EXTI_PortSource_DISMANTLE  EXTI_PortSourceGPIOC
-#define EXTI_PinSource_DISMANTLE   EXTI_PinSource4
-
-#define EXTI_IRQn_DISMANTLE        EXTI4_IRQn
-
-dismantle_trig_edge_t dismantle_trig_edge = none_edge;
-
-
 void dismantle_int_init(void)
 {
     GPIO_InitTypeDef GPIO_InitStruct;
@@ -22,7 +9,10 @@ void dismantle_int_init(void)
     RCC_AHBPeriphClockCmd(RCC_DISMANTLE,ENABLE);
     GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
     GPIO_InitStruct.GPIO_Pin = GPIO_PIN_DISMANTLE;
+    GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
     GPIO_Init(GPIO_PORT_DISMANTLE,&GPIO_InitStruct);
+
+    //GPIO_SetBits(GPIO_PORT_DISMANTLE,GPIO_PIN_DISMANTLE);
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG,ENABLE);
     SYSCFG_EXTILineConfig(EXTI_PortSource_DISMANTLE,EXTI_PinSource_DISMANTLE);
@@ -38,4 +28,30 @@ void dismantle_int_init(void)
     NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStruct);
 }
+
+
+/*
+*********************************************************************************************************
+*	函 数 名:bool app_check_dismantle_key_status(void)
+*	功能说明:判断防拆按键状态
+*	形    参:无  
+*	返 回 值:TRUE:按下，FALSE:未按下
+*********************************************************************************************************
+*/
+bool app_check_dismantle_key_status(void)
+{
+    uint8_t temp;
+
+    temp =  GPIO_ReadInputDataBit(GPIO_PORT_DISMANTLE,GPIO_PIN_DISMANTLE);
+
+    if(temp)
+    {
+        return FALSE;
+    }
+    else
+    {
+        return TRUE;
+    }
+}
+
 

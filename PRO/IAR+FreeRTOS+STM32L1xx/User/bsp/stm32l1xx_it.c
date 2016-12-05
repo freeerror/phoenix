@@ -124,6 +124,26 @@ void UsageFault_Handler(void)
 void DebugMon_Handler(void)
 {
 }
+
+/*
+*********************************************************************************************************
+*	函 数 名:void EXTI1_IRQHandler(void)
+*	功能说明:光敏中断服务程序
+*	形    参:无  
+*	返 回 值:无 
+*********************************************************************************************************
+*/
+void EXTI1_IRQHandler(void)
+{
+    static int_alarm_t value_to_send;
+    if(EXTI_GetITStatus(EXTI_Line1) != RESET)
+    {
+        value_to_send = brightness_alarm;
+        xQueueSendFromISR(int_alarm_queue,&value_to_send,0);
+        EXTI_ClearITPendingBit(EXTI_Line1);
+    }
+}
+
 /*
 *********************************************************************************************************
 *	函 数 名:void EXTI4_IRQHandler(void)
@@ -132,15 +152,31 @@ void DebugMon_Handler(void)
 *	返 回 值:无 
 *********************************************************************************************************
 */
-void EXTI4_IRQHandler(void)
-{
-    if(EXTI_GetITStatus(EXTI_Line4) != RESET)
-    {
-        vTaskDelay(20 / portTICK_RATE_MS); //延时去抖
-        
-        EXTI_ClearITPendingBit(EXTI_Line4);
+#ifdef DEBUG_SYSTEM
+
+    void EXTI15_10_IRQHandler(void)
+    {      
+        if(EXTI_GetITStatus(EXTI_Line13) != RESET)
+        {
+            delay_ms(20);
+
+            EXTI_ClearITPendingBit(EXTI_Line13);
+        }
     }
-}
+
+#else
+
+    void EXTI4_IRQHandler(void)
+    {
+        if(EXTI_GetITStatus(EXTI_Line4) != RESET)
+        {
+            delay_ms(20); //延时去抖
+            
+            EXTI_ClearITPendingBit(EXTI_Line4);
+        }
+    }
+
+#endif
 
 
 /**
